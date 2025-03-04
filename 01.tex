@@ -1,0 +1,155 @@
+\chapter{Algebraic tori and their actions}
+
+\section{Basic definitions}
+\begin{definition}[Algebraic group]
+An \textbf{algebraic group} $G$ is a $k$-variety equipped with the the structure of a ``group object" in the category of $k$-varieties, i.e. we have two morphisms and a \textit{closed} point
+\[m:G\times G\to G,\quad i:G\to G,\quad e\in G\]
+that satisfy the usual group axioms ``diagrammatically".
+\end{definition}
+
+\begin{example}
+Associativity can be expressed ``diagrammatically" as
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHXFx0aW1lcyBHXFx0aW1lcyBHIl0sWzEsMCwiR1xcdGltZXMgRyJdLFswLDEsIkdcXHRpbWVzIEciXSxbMSwxLCJHIl0sWzAsMiwiKG0saWRfRykiLDJdLFswLDEsIihpZF9HLG0pIl0sWzEsMywibSJdLFsyLDMsIm0iLDJdXQ==
+\[\begin{tikzcd}
+	{G\times G\times G} & {G\times G} \\
+	{G\times G} & G
+	\arrow["{(id_G,m)}", from=1-1, to=1-2]
+	\arrow["{(m,id_G)}"', from=1-1, to=2-1]
+	\arrow["m", from=1-2, to=2-2]
+	\arrow["m"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{example}
+
+\begin{definition}[Multiplicative group]
+The \textbf{multiplicative group}, denoted $\G_m$, is the $k$-variety $\A^1\bs \cpa0$ equipped with the morphisms
+\[m:\funcDef{\G_m\times \G_m}{\G_m}{(a,b)}{ab}\]
+\[i:\funcDef{\G_m}{\G_m}{a}{1/a}\]
+\[e=1\in \A^1\nz\]
+(we are identifying $\G_m=k^\ast$).
+\end{definition}
+
+\begin{remark}
+$\G_m$ is affine: $\A^1=\Spec k[x]$ and $\A^1\nz=\A^1\bs V(x)=D(x)$, thus $D(x)=\Spec (k[x])_{x}=\Spec(k[x,x\ii])=\Spec k[x^{\pm1}]$.
+\end{remark}
+
+\begin{remark}
+All affine algebraic groups can be described dually as spectra of \textbf{Hopf algebras}
+\end{remark}
+
+
+\begin{example}
+$m:\G_m\times \G_m\to \G_m$ can be described as the map corresponding to
+\[\funcDef{k[x^{\pm1}]}{k[y^{\pm1}]\otimes_k k[z^{\pm1}]}{x}{y\otimes z}\]
+the inverse corresponds to
+\[\funcDef{k[x^{\pm1}]}{k[y^{\pm1}]}{x}{y\ii}\]
+and the neutral element corresponds to\footnote{recall that a $k$-point $e$ of the variety $G$ can be seen as a morphism $\Spec k\to G$ with set-theoretic image $e$.}
+\[\funcDef{k[x^{\pm1}]}{k}{x}{1}\]
+\end{example}
+
+\begin{remark}
+In general, if $G=\Spec A$ is an affine variety, a structure of algebraic group is equivalent to a structure of Hopf algebra on $A$:
+\begin{align*}
+m:G\times G\to G\quad\longleftrightarrow& \quad\Delta:A\to A\otimes_k A\\
+i:G\to G\quad\longleftrightarrow& \quad S:A\to  A\\
+e:\Spec k\to G\quad\longleftrightarrow& \quad\e:A\to k
+\end{align*}
+\end{remark}
+
+\begin{remark}
+If $G$ and $H$ are algebraic groups, $G\times H$ is also naturally an alegbraic group.
+\end{remark}
+
+\begin{definition}[Algebraic tori]
+The \textbf{standard $n$-dimensional algebraic torus over $k$} is $\G_m^n$. An \textbf{algebraic torus} is an algebraic groups $T$ which is isomorphic to $\G_m^n$ for some $n$.
+
+We may omit the adjective ``algebraic" when appropriate.
+\end{definition}
+
+\begin{remark}
+If $k=\C$ then $\G_m^n=(\C^\ast)^n$, which is homotopy equivalent to $(S^1)^n$. This $(S^1)^n$ is the ``maximal compact subgroup".
+\end{remark}
+
+
+\section{Cartier duality}
+
+In some sense which we will make precise, tori are ``dual" to finitely generated torsion-free (and thus free) abelian groups.
+
+\begin{definition}[Associated group algebra]
+If $M$ is a finitely generated abelian group, the \textbf{$k$-group algebra of $M$}, denoted by $k[M]$, is the freely generated $k$-vector space with formal basis $\cpa{t^m\mid m\in M}$ and multiplication induced by $t^mt^{m'}=t^{m+m'}$.
+\end{definition}
+
+\begin{example}
+If $M=\Z^n$ then
+\[k[\Z^n]=k[x_1^{\pm1},\cdots,x_n^{\pm1}],\]
+which is the coordinate ring of $(\G_m)^n$.
+
+Moreover, the group structure of $\G_m^n$ is given by
+\begin{align*}
+\Delta:&\funcDef{k[\Z^n]}{k[\Z^n]\otimes_k[\Z^n]}{t^m}{t^m\otimes t^m}\\
+S:&\funcDef{k[\Z^n]}{k[\Z^n]}{t^m}{t^{-m}}\\
+\e:&\funcDef{k[\Z^n]}{k}{t^m}{1}
+\end{align*}
+\end{example}
+
+\begin{fact}
+These formulas give a Hopf algebra structure on $k[M]$ for all abelian groups $M$
+\begin{align*}
+\Delta:&\funcDef{k[M]}{k[M]\otimes_k[M]}{t^m}{t^m\otimes t^m}\\
+S:&\funcDef{k[M]}{k[M]}{t^m}{t^{-m}}\\
+\e:&\funcDef{k[M]}{k}{t^m}{1}
+\end{align*}
+\end{fact}
+
+\begin{remark}
+$k[M]$ is finitely generated and reduced, so there is a (classical) affine variety $D(M):=\Spec k[M]$ which inherits the structure of an algebraic group.
+\end{remark}
+
+
+\begin{definition}[Cartier dual]
+If $M$ is a finitely generated abelian group, $D(M)$ is the \textbf{cartier dual} of $M$.
+\end{definition}
+
+\begin{example}
+If $M=\znz n$ then the group algebra is
+\[k[\znz n]=\frac{k[t]}{(t^n-1)}.\]
+$\Spec k[\znz n]$ then is the closed subvariety (and subgroup) of $\G_m$ described by the equation $t^n=1$, i.e. the group of the $n$-th roots of unity $\mu_n$
+\end{example}
+
+\begin{definition}[Group of $n$-th roots of unity]
+$\mu_n=D(\znz n)$.
+\end{definition}
+
+\begin{remark}
+If $n=p=\cha k$ then $(t^p-1)=(t-1)^p$, so $\mu_p$ would be a point. To get any interesting geometric information in this case you need to allow nilpotens and you end up with a group scheme.
+\end{remark}
+
+
+\begin{exercise}
+$D(M\oplus N)=D(M)\times D(N)$.
+\end{exercise}
+
+For a general finitely generated abelian group
+\[M=\Z^n\oplus \znz{n_1}\oplus\cdots\oplus \znz{n_k}\]
+we get
+\[D(M)\cong \G_m^n\times\mu_{n_1}\times\cdots\times\mu_{n_k}.\]
+
+
+\begin{remark}
+$\GL_n$ is an algebraic group, indeed $\GL_n\subseteq \A^{n^2}$ and we can give it the structure of a variety by seeing it as the principal open subset associated to the determinant (seen as a regular function on $\A^{n^2}$). Matrix multiplication and inversion can be checked to be morphisms.
+\end{remark}
+
+\begin{definition}[Diagonizable group]
+An algebraic group is called \textbf{diagonalizable} if it is isomorphic to a (closed) subgroup of $\Diag_n\subseteq \GL_n$ for some $n$
+\end{definition}
+
+\begin{remark}
+$\Diag_n\cong\G_m^n$
+\end{remark}
+
+\begin{fact}
+We have an equivalence of categories
+\[D:(fin.gen.AbGps)\to (Diagonalizable.AlgGroups)\]
+\end{fact}
+
+
+

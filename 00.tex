@@ -1,20 +1,67 @@
 \chapter*{Introduction}
+\begin{center}
+Le note sono in inglese per coerenza con la lingua in cui il corso \`e stato tenuto.    
+\end{center}
 
-\section*{Di cosa stiamo parlando?}
-Un \textbf{gruppo algebrico lineare} \`e un sottogruppo di $\GL(n)$ definito dall'annullarsi di equazioni polinomiali.
+\section*{What is the course about?}
+The first part of the course deals with:
+\begin{itemize}
+    \item Algebraic Tori, their actions and representations
+    \item Affine toric varieties (with monoids) $\leftrightarrow$ cones in some $\R^n$
+    \item Projective toric varieties $\leftrightarrow$ polytopes in some $\R^n$
+    \item General toric varieties $\leftrightarrow$ fans in $\R^n$
+\end{itemize}
+We will then deal with (suject to change)
+\begin{itemize}
+    \item Divisors/line bundles on toric varieties
+    \item Cox ring of a toric variety
+    \item Cohomology of divisors
+    \item Toric morphisms and resolution of singularities
+    \item and more!
+\end{itemize}
 
-Vogliamo studiare questi gruppi e le loro rappresentazioni.
+
+Let us set some ground assumptions: we'll work over an algebraically closed field (and we will be lax about the characteristic of the field). The main reference for the course (Cox, Little, Schenk ``Toric varieties") works over $\C$ but a lot of things work more generally.
 
 
-\begin{example}
-Il gruppo $\SL(2,\C)$ agisce su $\C^2$, e quindi anche sulle funzioni definite su $\C^2$, infatti se $f:\C^2\to X$ abbiamo una azione
-\[g(f)(v)=f(g\ii v)\]
-In particolare notiamo che porta funzioni polinomiali in funzioni polinomiali, in quanto
-\[\mat{a&b\\c&d}(x)=dx-by,\quad\mat{a&b\\c&d}(y)=-cx+ay.\]
-Notiamo anche che preserva il grado in quanto manda polinomi lineari in lineari.
+\begin{definition}[Toric variety]
+An $n$-dimensional toric variety $X$ is a (normal) $k$-variety equipped with an open immersion of an $n$-dimensional torus $T\subseteq X$, where $T\cong (k^\ast)^n$, and an action $T\times T\to T$ which extends to the whole of $X$ \footnote{that is, it extends to a $T\times X\to X$}.
+\end{definition}
 
-\textbf{Domanda:} come funzionano le orbite di questa azione sugli spazi omogenei?
-\[\C[x,y]_d=\ps{x^d,x^{d-1}y,\cdots,y^d}_\C\]
+\begin{remark}
+Normality is a standard assumption that we'll make at some point but some things work without it.
+\end{remark}
 
-Consideriamo per esempio $V_2=\C[x,y]_2=\ps{x^2,xy,y^2}$. I suoi elementi sono $\alpha x^2+\beta xy+\gamma y^2$. Segue che $\C[\al,\beta,\gamma]$ sono le funzioni polinomiali su $V_2$. Possiamo classificare le orbite in termini dell'invariante $\Delta=\al\gamma-4\beta^2$.
+We'll see that the geometry of such an object is encoded in a combinatorial gadgets, reducing problems in algebraic geometry to problems in combinatorics, which is sometimes convenient.
+
+Sometimes the opposite happens and results in combinatorics can be proven using algebraic geometry
+\begin{example}[McMullen's ``$g$-conjecture"]
+The theorem is a characterization of the $f$-vectors of simple polytopes\footnote{for now, convex hull of a finite subset of $\R^n$}.
+
+\begin{definition}[$f$-vectors]
+If $P$ is a polytope, its \textbf{$f$-vector} is 
+\[(f_0(P),\cdots, f_d(P)),\quad \text{where $d=\dim P$}\]
+and $f_i(P)$ is the number of $i$-dimensional faces. We may set $f_{-1}(P)=1$.
+\end{definition}
+
+It's reasonable to ask ourselves which $f$-vectors can appear. We may define the $h$-vector by setting
+\[\sum_{i=0}^d f_i (t-1)^i=\sum_{i=0}^dh_i t^i,\quad \text{i.e. }h_i=\sum_{j=i}^d(-1)^{j-i}\binom{j}if_j,\ h_{-1}=0\]
+It is a theorem that the $h$-vector of a simple polytope is palindromic ($h_i=h_{d-i}$).
+
+We obtain the \textbf{$g$-vector} by setting $g_i=h_i-h_{i-1}$. The conjecture was that
+\begin{theorem}[$g$-conjecture]
+$f=(f_0,\cdots, f_d)\in \N^{d+1}$ is the $f$-vector of a simple polytope if
+\begin{enumerate}
+\item $h_i=h_{d-1}$ for all $0\leq i\leq \floor{d/2}$
+\item $g_i\geq 0$ for all $0\leq i\leq \floor{d/2}$
+\item $(g_1,\cdots, g_{\floor{d/2}})$ is a ``Macauly vector" if, when we write (uniquely)
+\[g_i=\binom{n_i}i+\cdots+\binom{n_{r_i}}{r_i}\]
+with $n_i>n_{i-1}>\cdots>n_{r_i}$ then
+\[g_{i+1}\leq \binom{n_i+1}{i+1}+\cdots+\binom{n_{r_i}+1}{r_i+1}\]
+\end{enumerate}
+\end{theorem}
+Stanley proved necessity using toric varieties. He proved that the $g$-vector of a simple polytope is the vector of dimensions for some cohomology ring of the associated toric variety.
+
+
+Later McMullen found a completely combinatorial proof.
 \end{example}
