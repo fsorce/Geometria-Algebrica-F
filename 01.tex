@@ -20,6 +20,49 @@ Associativity can be expressed ``diagrammatically" as
 \end{tikzcd}\]
 \end{example}
 
+\begin{remark}
+If $G=\Spec A$ is an affine variety, a structure of algebraic group is equivalent to a structure of \textbf{Hopf algebra} on $A$:
+\begin{align*}
+m:G\times G\to G\quad\longleftrightarrow& \quad\Delta:A\to A\otimes_k A\\
+i:G\to G\quad\longleftrightarrow& \quad S:A\to  A\\
+e:\Spec k\to G\quad\longleftrightarrow& \quad\e:A\to k
+\end{align*}
+and the homomorphisms $\Delta,\ S,\ \e$ satisfy the diagrammatic group axioms with the arrows reversed.
+\end{remark}
+
+\begin{remark}
+If $G$ and $H$ are algebraic groups, $G\times H$ is also naturally an algebraic group. For example 
+\[m_{G\times H}:\funcDef{(G\times H)\times (G\times H)}{G\times H}{((g_1,h_1),(g_2,h_2))}{(m_G(g_1,g_2),m_H(h_1,h_2))}.\]
+\end{remark}
+
+\begin{definition}[Homomorphism between Algebraic groups]
+If $G,H$ are algebraic groups over $k$ then a homomorphism $f:G\to H$ is a morphism of $k$-varieties such that
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHXFx0aW1lcyBHIl0sWzEsMCwiSFxcdGltZXMgSCJdLFswLDEsIkciXSxbMSwxLCJIIl0sWzAsMiwibSIsMl0sWzEsMywibSIsMl0sWzIsMywiZiIsMl0sWzAsMSwiKGYsZikiXV0=
+\[\begin{tikzcd}
+	{G\times G} & {H\times H} \\
+	G & H
+	\arrow["{(f,f)}", from=1-1, to=1-2]
+	\arrow["m"', from=1-1, to=2-1]
+	\arrow["m"', from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{definition}
+
+\begin{remark}
+If $G$ and $H$ are affine, the axioms of homomorphism dualize to what a homomorphism of Hopf algebras should be.
+\end{remark}
+
+\begin{remark}
+All algebraic subgroups of an algebraic group are closed subvarieties.
+\end{remark}
+
+\bigskip
+
+\begin{center}
+	The first example of algebraic group we present is the multiplicative group
+\end{center}
+
+
 \begin{definition}[Multiplicative group]
 The \textbf{multiplicative group}, denoted $\G_m$, is the $k$-variety $\A^1\bs \cpa0$ equipped with the morphisms
 \[m:\funcDef{\G_m\times \G_m}{\G_m}{(a,b)}{ab}\]
@@ -29,86 +72,76 @@ The \textbf{multiplicative group}, denoted $\G_m$, is the $k$-variety $\A^1\bs \
 \end{definition}
 
 \begin{remark}
-$\G_m$ is affine: $\A^1=\Spec k[x]$ and $\A^1\nz=\A^1\bs V(x)=D(x)$, thus $D(x)=\Spec (k[x])_{x}=\Spec(k[x,x\ii])=\Spec k[x^{\pm1}]$.
+$\G_m$ is affine, indeed $\A^1=\Spec k[x]$ and $\A^1\nz=\A^1\bs V(x)=D(x)$, thus 
+\[D(x)=\Spec (k[x])_{x}=\Spec(k[x,x\ii])=\Spec k[x^{\pm1}].\]
+If you are uncomfortable with ``$x\ii$" appearing you may simply think of this coordinate ring as
+\[\frac{k[x,y]}{(xy-1)}.\]
 \end{remark}
+
+
+
 
 \begin{remark}
-All affine algebraic groups can be described dually as spectra of \textbf{Hopf algebras}
-\end{remark}
-
-
-\begin{example}
-$m:\G_m\times \G_m\to \G_m$ can be described as the map corresponding to
-\[\funcDef{k[x^{\pm1}]}{k[y^{\pm1}]\otimes_k k[z^{\pm1}]}{x}{y\otimes z}\]
-the inverse corresponds to
+The multiplication $m:\G_m\times \G_m\to \G_m$ can be described as the morphism corresponding to the $k$-algebra homomorphism
+\[\funcDef{k[x^{\pm1}]}{k[y^{\pm1}]\otimes_k k[z^{\pm1}]}{x}{y\otimes z}.\]
+Similarly, the inverse corresponds to
 \[\funcDef{k[x^{\pm1}]}{k[y^{\pm1}]}{x}{y\ii}\]
 and the neutral element corresponds to\footnote{recall that a $k$-point $e$ of the variety $G$ can be seen as a morphism $\Spec k\to G$ with set-theoretic image $e$.}
 \[\funcDef{k[x^{\pm1}]}{k}{x}{1}\]
-\end{example}
-
-\begin{remark}
-In general, if $G=\Spec A$ is an affine variety, a structure of algebraic group is equivalent to a structure of Hopf algebra on $A$:
-\begin{align*}
-m:G\times G\to G\quad\longleftrightarrow& \quad\Delta:A\to A\otimes_k A\\
-i:G\to G\quad\longleftrightarrow& \quad S:A\to  A\\
-e:\Spec k\to G\quad\longleftrightarrow& \quad\e:A\to k
-\end{align*}
 \end{remark}
 
-\begin{remark}
-If $G$ and $H$ are algebraic groups, $G\times H$ is also naturally an alegbraic group.
-\end{remark}
+
+
+
 
 \begin{definition}[Algebraic tori]
-The \textbf{standard $n$-dimensional algebraic torus over $k$} is $\G_m^n$. An \textbf{algebraic torus} is an algebraic groups $T$ which is isomorphic to $\G_m^n$ for some $n$.
-
-We may omit the adjective ``algebraic" when appropriate.
+The \textbf{standard $n$-dimensional algebraic torus over $k$} is $\G_m^n$. An \textbf{algebraic torus}\footnote{we may simply say ``torus" if no confusion can occur.} is an algebraic group $T$ which is isomorphic to $\G_m^n$ for some $n$.
 \end{definition}
 
 \begin{remark}
-If $k=\C$ then $\G_m^n=(\C^\ast)^n$, which is homotopy equivalent to $(S^1)^n$. This $(S^1)^n$ is the ``maximal compact subgroup".
+If $k=\C$ then $\G_m^n=(\C^\ast)^n$, which is homotopy equivalent to $(S^1)^n$. This $(S^1)^n$ is the ``maximal compact subgroup" and is the reason why these groups are called tori in the first place.
 \end{remark}
 
 
 \section{Cartier duality}
+In this section we will define an equivalence of categories between finitely generated abelian groups\footnote{with no $p$-torsion if $p=\cha k\neq 0$} and a specific type of algebraic groups.
+Under this correspondence, tori will be ``dual" to finitely generated free abelian groups.
 
-In some sense which we will make precise, tori are ``dual" to finitely generated torsion-free (and thus free) abelian groups.
+\subsection{Group algebra and Cartier dual}
+The first step is transforming general (finitely generated) abelian groups into (finite type reduced) algebras over $k$, the way we do this is via the
 
 \begin{definition}[Associated group algebra]
-If $M$ is a finitely generated abelian group, the \textbf{$k$-group algebra of $M$}, denoted by $k[M]$, is the freely generated $k$-vector space with formal basis $\cpa{t^m\mid m\in M}$ and multiplication induced by $t^mt^{m'}=t^{m+m'}$.
+If $M$ is a finitely generated abelian group, the \textbf{$k$-group algebra of $M$}, denoted by $k[M]$, is the $k$-vector space spanned formally by the basis $\cpa{t^m\mid m\in M}$ together with the multiplication induced by $t^mt^{m'}=t^{m+m'}$.
 \end{definition}
 
 \begin{example}
 If $M=\Z^n$ then
-\[k[\Z^n]=k[x_1^{\pm1},\cdots,x_n^{\pm1}],\]
+\[k[\Z^n]=k[t^{(1,0,\cdots,0)}, t^{(-1,0,\cdots,0)},\cdots,t^{(0,\cdots,0,-1)}]=k[x_1^{\pm1},\cdots,x_n^{\pm1}],\]
 which is the coordinate ring of $(\G_m)^n$.
-
-Moreover, the group structure of $\G_m^n$ is given by
-\begin{align*}
-\Delta:&\funcDef{k[\Z^n]}{k[\Z^n]\otimes_k[\Z^n]}{t^m}{t^m\otimes t^m}\\
-S:&\funcDef{k[\Z^n]}{k[\Z^n]}{t^m}{t^{-m}}\\
-\e:&\funcDef{k[\Z^n]}{k}{t^m}{1}
-\end{align*}
 \end{example}
 
 \begin{fact}
-These formulas give a Hopf algebra structure on $k[M]$ for all abelian groups $M$
+These formulas give $k[M]$ a Hopf algebra structure for all finitely generated abelian groups $M$
 \begin{align*}
 \Delta:&\funcDef{k[M]}{k[M]\otimes_k[M]}{t^m}{t^m\otimes t^m}\\
 S:&\funcDef{k[M]}{k[M]}{t^m}{t^{-m}}\\
 \e:&\funcDef{k[M]}{k}{t^m}{1}
 \end{align*}
 \end{fact}
+\begin{remark}
+If we see $\G_m^n$ as $\Spec k[\Z^n]$ then the usual algebraic group structure is the one induced by the maps we just mentioned.
+\end{remark}
 
 \begin{remark}
-$k[M]$ is finitely generated and reduced, so there is a (classical) affine variety $D(M):=\Spec k[M]$ which inherits the structure of an algebraic group.
+If $M$ is finitely generated then $k[M]$ is of finite type over $k$. It turns out that it is also reduced when $M$ has no elements of order divided by the characteristic of $k$. 
 \end{remark}
 
 
 \begin{definition}[Cartier dual]
-If $M$ is a finitely generated abelian group, $D(M)$ is the \textbf{cartier dual} of $M$.
+If $M$ is a finitely generated abelian group, $D(M):=\Spec k[M]$ is the \textbf{cartier dual} of $M$.
 \end{definition}
 
+Let us compute the cartier dual of another type of finitely generated abelian group:
 \begin{example}
 If $M=\znz n$ then the group algebra is
 \[k[\znz n]=\frac{k[t]}{(t^n-1)}.\]
@@ -120,22 +153,35 @@ $\mu_n=D(\znz n)$.
 \end{definition}
 
 \begin{remark}
-If $n=p=\cha k$ then $(t^p-1)=(t-1)^p$, so $\mu_p$ would be a point. To get any interesting geometric information in this case you need to allow nilpotens and you end up with a group scheme.
+If $n=p=\cha k$ then $(t^p-1)=(t-1)^p$, so $\mu_p$ would be a point. To get any interesting geometric information in this case you need to allow nilpotens, stumbling into the teorritory of group schemes.
 \end{remark}
 
+Since we know the structure theorem for finitely generated abelian groups, let us consider the following
 
 \begin{exercise}
 $D(M\oplus N)=D(M)\times D(N)$.
 \end{exercise}
+\begin{proof}[Solution (Sketch).]
+It is enough to note that $k[M\oplus N]=k[M]\otimes k[N]$ and this follows from the fact that
+\[t^{(m,n)}=t^{(m,0)}t^{(0,n)}.\]
+\end{proof}
 
+It follows that 
+
+\begin{proposition}\label{PrCartierDualOfGeneralFinitelyGeneratedAbelianGroup}
 For a general finitely generated abelian group
 \[M=\Z^n\oplus \znz{n_1}\oplus\cdots\oplus \znz{n_k}\]
-we get
+the Cartier dual is
 \[D(M)\cong \G_m^n\times\mu_{n_1}\times\cdots\times\mu_{n_k}.\]
+\end{proposition}
+
+
+Since we hope to find an equivalence of categories, let us try to understand another way in which we can view these types of algebraic groups.
+
 
 
 \begin{remark}
-$\GL_n$ is an algebraic group, indeed $\GL_n\subseteq \A^{n^2}$ and we can give it the structure of a variety by seeing it as the principal open subset associated to the determinant (seen as a regular function on $\A^{n^2}$). Matrix multiplication and inversion can be checked to be morphisms.
+$\GL_n$ is an algebraic group: It is a variety when seen as\footnote{the determinant is a homogeneous polynomial of degree $n$} $\A^{n^2}\bs V(\det)$ and it can be checked that matrix multiplication and inversion are morphisms of $k$-varieties.
 \end{remark}
 
 \begin{definition}[Diagonizable group]
@@ -143,13 +189,224 @@ An algebraic group is called \textbf{diagonalizable} if it is isomorphic to a (c
 \end{definition}
 
 \begin{remark}
-$\Diag_n\cong\G_m^n$
+$\Diag_n\cong\G_m^n$ and the isomorphism is given by ignoring the entries which aren't on the diagonal.
 \end{remark}
 
-\begin{fact}
-We have an equivalence of categories
-\[D:(fin.gen.AbGps)\to (Diagonalizable.AlgGroups)\]
-\end{fact}
+\begin{remark}
+$D(M)$ is diagonalizable, because
+\[D(M)\cong \G_m^n\times\mu_{n_1}\times\cdots\times\mu_{n_k}\subseteq \G_m^{n+k}\cong \Diag_{n+k}.\]
+\end{remark}
+
+\begin{proposition}
+If $\vp:M\to N$ is a group homomorphism 
+\[k[\vp]:\funcDef{k[M]}{k[N]}{t^m}{t^{\vp(m)}}\] 
+is a $k$-algebra homomorphism and so $D(\vp)=\Spec(k[\vp]):D(N)\to D(M)$ is a morphism of $k$-varieties.
+
+This is actually a homomorphism of algebraic groups and the association is functorial.
+\end{proposition}
+
+Cartier duality is that statement that
+\[D:(\text{fin.gen.AbGps}_{\text{no $p$-tors}})\op\to (\text{Diag.AlgGps}),\]
+where $p=\cha k$, is an equivalence of categories. To prove this fact we will build an inverse functor
+
+\subsection{Character group}
+To find the ``inverse" functor, we want to build a finitely generated abelian group from an algebraic group. The construction that will end up being what we want is the \textit{group of characters}
+
+
+\begin{definition}[Character]
+A \textbf{character} of an algebraic group $G$ is a homomorphism $\chi:G\to \G_m$. We denote the set of all characters $X(G)$.
+\end{definition}
+\begin{remark}
+The characters of an algebraic group $G$ form an abelian group via:
+\[\chi_1:G\to \G_m,\quad \chi_2:G\to \G_m\quad\leadsto\quad \chi_1\cdot\chi_2:G\xrightarrow{(\chi_1,\chi_2)}\G_m\times\G_m\xrightarrow{m}\G_m.\]
+From now on $X(G)$ will always also have the group structure.
+\end{remark}
+
+\begin{example}
+If $G=\G_m$ then for $k\in \Z$
+\[\funcDef{\G_m}{\G_m}{a}{a^k}\]
+is a character, which corresponds to
+\[\funcDef{k[x^{\pm1}]}{k[x^{\pm1}]}{x}{x^k}\]
+\end{example}
+
+\begin{example}
+If $G=\G_m^n$ and $(k_1,\cdots, k_n)\in\Z^n$ then
+\[\funcDef{\G_m^n}{\G_m}{(a_1,\cdots,a_n)}{a_1^{k_1}\cdots a_n^{k_n}}.\]
+We will see that these are all the characters on the torus.
+\end{example}
+
+\begin{example}
+If $G=\GL_n$ the determinant is a character
+\[\funcDef{\GL_n}{\G_m}{M}{\det M}\]
+\end{example}
+
+
+\begin{definition}[Group-like elements]
+A \textbf{group-like element} in a Hopf algebra $A$ is an $a\in A$ such that $a$ is invertible and $\Delta(a)=a\otimes a$.
+\end{definition}
+
+\begin{lemma}\label{LmCharactersAreGroupLikeElements}
+If $G=\Spec A$ is an affine algebraic group, characters of $G$ correspond to {group-like} elements of $A$.
+\end{lemma}
+\begin{proof}
+A character $\chi:\Spec A\to \G_m$ corresponds to a homomorphism of Hopf algebras $k[x^{\pm1}]\to A$ which sends $x$ to some $a\in A$. The homomorphism is uniquely determined by $a$ so we just need to check which elements of $A$ can be the image of $x$. Since $x$ has an inverse, $a\in A^\ast$ and $\Delta(a)=a\otimes a$ because $\Delta(x)=x\otimes x$. On the other hand, an element which satisfies those properties does yield a Hopf-algebra homomorphism, so we are done.
+\end{proof}
+
+\subsection{Proof of Cartier duality}
+
+\begin{remark}
+Constructing the character group extends to a functor
+\[X:(\text{AlgGps})\to (\text{AbGps})\]
+via pullback, i.e. the map $f:G\to H$ becomes
+\[X(f)\funcDef{X(H)}{X(G)}{\chi}{\chi\circ f}\]
+\end{remark}
+
+
+Now that we have built our candidate for the inverse functor, all we need to show that that the two compositions are naturally isomorphic to the identity.
+
+
+\begin{proposition}
+The map $M\to X(D(M))$ which to an element $m\in M$ assigns the character which corresponds to the Hopf-Algebra homomorphism
+\[\funcDef{k[x^{\pm1}]}{k[M]}{x}{t^m}\]
+is a natural isomorphism.
+\end{proposition}
+
+\begin{proof}
+It is easy to check that $M\to X(D(M))$ is a group homomorphism.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{inj.}}$] If $m_1\neq m_2$ then $t^{m_1}\neq t^{m_2}$ and so the induced Hopf algebra homomorphisms are different. 
+\item[$\boxed{\text{onto}}$] Given lemma (\ref{LmCharactersAreGroupLikeElements}), we just need to show that the only group-like elements of $k[M]$ are the $t^m$ for $m\in M$. Let us take any element $a=\sum_{m\in M}a_mt^m$ of $k[M]$ and impose that $\Delta(a)=a\otimes a$, then
+\[\Delta(a)=\Delta\pa{\sum_{m\in M}a_mt^m}=\sum_{m\in M}a_m\Delta(t^m)=\sum_{m\in M}a_m t^m\otimes t^m\]
+\[a\otimes a=\pa{\sum_{m\in M}a_mt^m}\otimes \pa{\sum_{m'\in M}a_{m'}t^{m'}}=\pa{\sum_{m,m'\in M}a_ma_{m'}t^m\otimes t^{m'}}.\]
+Since the $t^m\otimes t^{m'}$ form a basis of $k[M]\otimes k[M]$, if $m\neq m'$ then $a_ma_{m'}=0$. Thus there exists at most one nonzero coefficient $a_{m_0}$ and $a=a_{m_0}t^{m_0}$, but $a$ must be invertible so $a_{m_0}\neq 0$. Also, again imposing the comultiplication condition, $a_{m_0}^2=a_{m_0}$, which implies that $a_{m_0}=1$ since it isn't $0$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{corollary}
+For $M=\Z^n$ we get $X(\G_m^n)\cong \Z^n$ and the characters are the ones we wrote above\footnote{$(a_1,\cdots, a_n)\mapsto a_1^{k_1}\cdots a_n^{k_n}$}.
+\end{corollary}
+
+
+Let us now consider the other composition:
+
+\begin{remark}
+There is a canonical map $\Spec A=G\to D(X(G))$.
+\end{remark}
+\begin{proof}
+Let $\chi:G\to \G_m$ be a character of $G$. Upon composition with the inclusion $\G_m\subseteq \A^1$ we get a morphism in $\Hom(G,\A^1)$ and this set is canonically identified with $A$, so we get a map
+\[\vp:X(G)\to A.\] 
+This is a group homomorphism, which induces the desired map
+\[\funcDef{k[X(G)]}{A}{t^m}{\vp(m)}.\]
+\end{proof}
+
+\begin{lemma}
+Let $G$ be an abstract group (no algebraic structure) and $\K$ be any field, if we take $\phi_i:G\to \K^\ast$ distinct group homomorphisms then the $\phi_i$ are linearly independent in\footnote{not homomorphisms of any kind, just set theoretic functions. It is a $\K$-vector space by looking at the strucutre on the codomain.} $\Fun(G,\K)$
+\end{lemma}
+\begin{proof}
+Let us assume by contradiction that we have a non-triavial relation $\sum a_i\phi_i=0$ for some $a_i\in \K$ and let's assume that this relation has minimal length.
+
+By definition, $\sum a_i\phi_i(gh)=\sum a_i\phi_i(g)\phi_i(h)=0$ for all $g,h\in G$. Pick $\ol g\in G$ such that $\phi_1(\ol g)\neq \phi_2(\ol g)$ (which we can do because $\phi_1\neq \phi_2$). Setting $g=\ol g$ in the expression we get
+\[\sum a_i\phi_i(\ol gh)=\sum \under{\in \K}{a_i\phi_i(\ol g)}\phi_i(h)=0\]
+that is, $\sum {a_i\phi_i(\ol g)}\phi_i=0$ is an equality in $\Fun(G,\K)$. Multiplying the initial relation by $\phi_1(\ol g)$ we get
+\[\sum a_i\phi_1(\ol g)\phi_i=0\]
+subtracting the two functions we get
+\[\sum a_i(\phi_1(\ol g)-\phi_i(\ol g))\phi_i=0\]
+which is a shorter (look at $i=1$) non-trivial (look at $i=2$) reation, which is a contradiction.
+\end{proof}
+
+\begin{proposition}
+If $G$ is diagonalizable then the homomorphism $G\to D(X(G))$ is an isomorphism and $X(G)$ is finitely generated. Moreover, if $\cha k=p\neq 0$ then $X(G)$ has no $p$-torsion.
+\end{proposition}
+\begin{proof}
+Take a diagonalizable group $G$ and consider it as a closed subgroup $G\subseteq \G_m^n=\Diag_n$. Since it is \textit{closed} and $\G_m^n$ is affine, $G=\Spec A$ is also affine and we get a surjection\footnote{the surjection corresponds to taking $k[\Z^n]\to k[\Z^n]/I$ where $I$ is the ideal which defines $G$ as $V(I)\subseteq \G_m^n$.} $k[\Z^n]\to A$.
+
+Now note that we have $\Z^n\cong X(\G_m^n)\to X(G)$ and the surjection above factors 
+\[k[\Z^n]\to k[X(G)]\to A\]
+since the composition is surjective, $k[X(G)]\to A$ is also surjective. To conclude the first part of the proof then, we just need to show that the map is also injective, but this follows from the lemma.
+
+\medskip
+
+Now we concern ourselves with finite generation. Because of the isomorphism we just proved, the factorization
+\[k[\Z^n]\to k[X(G)]\to A\]
+now shows that $k[\Z^n]\to k[X(G)]$ is surjective because $k[\Z^n]\to A$ was. This lets us conclude that $\Z^n\to X(G)$ is surjective (and thus $X(G)$ is finitely generated) because otherwise $k[\Z^n]\to k[X(G)]$ wouldn't be.
+
+
+Suppose now that $0\neq p=\cha k$. Let $\chi\in X(G)$ be a $p$-torsion character, i.e. $\chi^p=1$, that is, $\chi(g)^p=1$ for all $g\in G$. Because $x^p-1=(x-1)^p$ in characteristic $p$, $\chi(g)=1$ for all $g\in G$, showing that $\chi=1$ and thus the absence of $p$-torsion.
+\end{proof}
+
+
+
+
+\begin{corollary}
+A connected subgroup of a torus is a torus.
+\end{corollary}
+\begin{proof}
+If $G\subseteq \G_m^n$, from the proposition we get that 
+\[G=D(X(G))\cong \G_m^k\times \mu_{n_1}\times\cdots\times \mu_{n_r},\] 
+but if $G$ is connected then all $n_i$ must be $1$ because otherwise that product would be disconnected.
+\end{proof}
+
+Having now verified both compositions we may formally state Cartier duality as a theorem now
+\begin{theorem}[Cartier duality]\label{ThCartierDuality}
+The functor
+\[D:(\text{fin.gen.AbGps}_{\text{no $p$-tors}})\op\to (\text{Diag.AlgGps}),\]
+where $p=\cha k$, is an equivalence of categories. The inverse functor is $X$.
+\end{theorem}
+
+
+\begin{remark}
+If we allow group schemes the problem with $p$-torsion doesn't come up.
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{proposition}
+Let $f:T_1\to T_2$ be a homomorphism of tori, then the image is also a torus.
+\end{proposition}
+\begin{proof}
+Since $T_1\to D(X(T_1))$ and $T_2\to D(X(T_2))$ are isomorphisms and the appropriate diagrams commute, we have that $f$ is induced by the corresponding homomorphism $M_2\to M_1$ where $M_1=X(T_1)$ and $M_2=X(T_2)$.
+
+Let $K=\ker(M_2\to M_1)$ and note that $M_2\onto M_2/K\inj M_1$. We claim that $L:=\ker(k[M_2]\to k[M_1])$ is the ideal $I=(t^m-t^{m'}\mid \vp(m)=\vp(m'))$:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{I\subseteq L}$] It suffices to note that the generators of $I$ lie in $L$, indeed $t^m-t^{m'}\mapsto t^{\vp(m)}-t^{\vp(m')}=0$.
+\item[$\boxed{L\subseteq I}$] Let $\sum_{m\in M_2}a_mt^m$ be a general element of $L$, then
+\[\sum_{n\in M_1}\pa{\sum_{m\in \vp\ii(n)}a_m}t^n=0\overset{\text{lin.ind.}}\Longrightarrow \sum_{m\in \vp\ii(n)}a_m=0\quad \forall n\in M_1\]
+For a fixed $n$, if $a_{m_1},a_{m_2}\neq 0$ for some $m_1,m_2\in \vp\ii(n)$ (if all are $0$ ok, just one nonzero is impossible given that the whole sum is zero) we can write
+\[\sum a_m t^m=\under{\in I}{a_{m_1}(t^{m_1}-t^{m_2})}+\under{\text{removed term with }t^{m_1}}{(a_{m_2}+a_{m_1})t^{m_2}+\sum_{m\neq m_1,m_2}a_mt^m}\]
+iterating this process shows the other inclusion.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Thus we can factor $k[M_2]\to k[M_1]$ as $k[M_2]\onto k[M_2]/I\inj k[M_1]$. One can check that\footnote{taking the image is a colimit, $M\mapsto k[M]$ is a left adjoint functor, indeed $\Hom_{AbGps}(M,A)\cong \Hom_{k-Alg}(k[M],A)$} $k[M_2]/I=k[M_2/K]$. Since $M_2/K\inj M_1$ and $M_1$ is a free abelian group, $M_2/K$ is also free and thus
+\[T_1\onto \under{\text{torus}}{\Spec k[M_2/K]}\inj T_2\]
+where to check injectivity we use $k[M_2]\to k[M_2/K]$ surjective and to check surjectivity, because subgroups are closed, it is enough to check for dominance and indeed $k[M_2/K]\to k[M_1]$ is injective.
+\end{proof}
+
+\begin{remark}
+We could have just said that the image is a connected subgroup of a torus and thus is also a torus, but the proof given is more instructive.
+\end{remark}
+
+
+
+
+
+
+
+
 
 
 

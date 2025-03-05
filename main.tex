@@ -3,6 +3,7 @@
 \input{style/fancystyle.tex}
 \input{style/macros.tex}
 
+\usepackage{cleveref}
 
 
 % ============================================
@@ -12,8 +13,11 @@
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\SO}{SO}
 \DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Fun}{Fun}
 
 \newcommand{\Diag}{\mathrm{Diag}}
+
+\newcommand{\op}{^{op}}
 
 %--------- Comandi dattilografici ------------
 \newcommand{\coloneqq}{:=}
@@ -41,5 +45,11 @@ A.A. 2024/25}
 
 \part{Basic theory of toric varieties}
 \include{01}
+
+
+
+\appendix
+\bibliographystyle{alpha}
+\bibliography{refs}
 
 \end{document}

@@ -1,9 +1,5 @@
 \chapter*{Introduction}
-\begin{center}
-Le note sono in inglese per coerenza con la lingua in cui il corso \`e stato tenuto.    
-\end{center}
-
-\section*{What is the course about?}
+\section*{Syllabus}
 The first part of the course deals with:
 \begin{itemize}
     \item Algebraic Tori, their actions and representations
@@ -17,13 +13,15 @@ We will then deal with (suject to change)
     \item Cox ring of a toric variety
     \item Cohomology of divisors
     \item Toric morphisms and resolution of singularities
-    \item and more!
+    \item and more...?
 \end{itemize}
+The main reference for this course \textemdash ``Toric varieties" by Cox, Little, Schenck \cite{cox2011toric} \textemdash is available in the same folder as this PDF.
 
+\section*{What is the course about?}
+We will work over an algebraically closed field (and we will be lax about the characteristic of the field). In \cite{cox2011toric} the authors work over $\C$ but many results hold more generally.
+\medskip
 
-Let us set some ground assumptions: we'll work over an algebraically closed field (and we will be lax about the characteristic of the field). The main reference for the course (Cox, Little, Schenk ``Toric varieties") works over $\C$ but a lot of things work more generally.
-
-
+The main goal of the course is understanding toric varieties:
 \begin{definition}[Toric variety]
 An $n$-dimensional toric variety $X$ is a (normal) $k$-variety equipped with an open immersion of an $n$-dimensional torus $T\subseteq X$, where $T\cong (k^\ast)^n$, and an action $T\times T\to T$ which extends to the whole of $X$ \footnote{that is, it extends to a $T\times X\to X$}.
 \end{definition}
@@ -32,11 +30,12 @@ An $n$-dimensional toric variety $X$ is a (normal) $k$-variety equipped with an 
 Normality is a standard assumption that we'll make at some point but some things work without it.
 \end{remark}
 
-We'll see that the geometry of such an object is encoded in a combinatorial gadgets, reducing problems in algebraic geometry to problems in combinatorics, which is sometimes convenient.
+We'll see that the geometry of such an object is encoded in a combinatorial gadget, converting problems in algebraic geometry to problems in combinatorics, which is sometimes convenient.
 
-Sometimes the opposite happens and results in combinatorics can be proven using algebraic geometry
+The opposite reduction is also possible and has been used historically. One of the main examples of a combinatorial problem being solved via the geometry of toric varieties is
 \begin{example}[McMullen's ``$g$-conjecture"]
-The theorem is a characterization of the $f$-vectors of simple polytopes\footnote{for now, convex hull of a finite subset of $\R^n$}.
+
+The then conjecture, and now theorem, is a characterization of the $f$-vectors of simple polytopes\footnote{for now a simple polytope is the convex hull of a finite subset of $\R^n$}.
 
 \begin{definition}[$f$-vectors]
 If $P$ is a polytope, its \textbf{$f$-vector} is 
@@ -44,11 +43,12 @@ If $P$ is a polytope, its \textbf{$f$-vector} is
 and $f_i(P)$ is the number of $i$-dimensional faces. We may set $f_{-1}(P)=1$.
 \end{definition}
 
-It's reasonable to ask ourselves which $f$-vectors can appear. We may define the $h$-vector by setting
-\[\sum_{i=0}^d f_i (t-1)^i=\sum_{i=0}^dh_i t^i,\quad \text{i.e. }h_i=\sum_{j=i}^d(-1)^{j-i}\binom{j}if_j,\ h_{-1}=0\]
-It is a theorem that the $h$-vector of a simple polytope is palindromic ($h_i=h_{d-i}$).
+It's reasonable to ask ourselves which $f$-vectors can appear. We may define the \textbf{$h$-vector} by setting
+\[\sum_{i=0}^d f_i (t-1)^i=\sum_{i=0}^dh_i t^i,\quad \text{i.e. }h_i=\sum_{j=i}^d(-1)^{j-i}\binom{j}if_j,\ h_{-1}=0.\]
+It was a known theorem that the $h$-vector of a simple polytope is palindromic (i.e. $h_i=h_{d-i}$).
+From the $h$-vector we obtain the \textbf{$g$-vector} by setting $g_i=h_i-h_{i-1}$. 
 
-We obtain the \textbf{$g$-vector} by setting $g_i=h_i-h_{i-1}$. The conjecture was that
+The conjecture was that
 \begin{theorem}[$g$-conjecture]
 $f=(f_0,\cdots, f_d)\in \N^{d+1}$ is the $f$-vector of a simple polytope if
 \begin{enumerate}
@@ -63,5 +63,5 @@ with $n_i>n_{i-1}>\cdots>n_{r_i}$ then
 Stanley proved necessity using toric varieties. He proved that the $g$-vector of a simple polytope is the vector of dimensions for some cohomology ring of the associated toric variety.
 
 
-Later McMullen found a completely combinatorial proof.
+Later McMullen found a completely combinatorial proof but for some time the only proof of this combinatorial fact passed through the geometry of toric varieties.
 \end{example}
