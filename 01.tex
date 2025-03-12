@@ -372,9 +372,9 @@ If we allow group schemes the problem with $p$-torsion doesn't come up.
 
 
 
+\subsubsection{Image of map between tori is a torus}
 
-
-\begin{proposition}
+\begin{proposition}\label{PrImageOfTorusInATorusIsATorus}
 Let $f:T_1\to T_2$ be a homomorphism of tori, then the image is also a torus.
 \end{proposition}
 \begin{proof}
@@ -399,6 +399,198 @@ where to check injectivity we use $k[M_2]\to k[M_2/K]$ surjective and to check s
 \begin{remark}
 We could have just said that the image is a connected subgroup of a torus and thus is also a torus, but the proof given is more instructive.
 \end{remark}
+
+
+
+\section{1 parameter subgroups and lattices}
+
+We now define a \textit{dual} notion to characters (we will make this precise shortly).
+
+\begin{definition}[1-parameter subgroup]
+A \textbf{1-parameter subgroup} (or \textbf{cocharacter} or \textbf{1-ps}) of an algebraic group $G$ is a homomorphism $\la:\G_m\to G$. 
+\end{definition}
+
+\begin{exercise}
+A non-trivial quotient of $\G_m$ is isomorphic to $\G_m$. More generally, a non-trivial quotient of a torus is isomorphic to a torus.
+\end{exercise}
+
+\begin{remark}
+If $\la:\G_m\to G$ is a homomorphism, the image is isomorphic to $\G_m/\ker\la$ by the first isomorphism theorem and because of the above exercise this quotient is again isomorphic to $\G_m$.
+\end{remark}
+
+
+\begin{remark}
+1-paramenter subgroups of $G$ form a group via
+\[\la_1\cdot \la_2:\G_m\xrightarrow{(\la_1,\la_2)} G\times G\xrightarrow{m}G.\]
+\end{remark}
+
+\begin{remark}
+If $G$ is abelian the group of 1-ps is abelian.
+\end{remark}
+
+
+\begin{proposition}\label{1psOfTorus}
+If $(h_1,\cdots, h_n)\in \Z^n$, the morphism
+\[\funcDef{\G_m}{\G_m^n}{a}{(a^{h_1},\cdots, a^{h_n})}\]
+is a 1-ps of $\G_m^n$. Moreover, all 1-ps of $\G_m^n$ are of this form. In particular, the group of 1-ps of $\G_m^n$ is isomorphic to $\Z^n$.
+\end{proposition}
+\begin{proof}
+If $\la:\G_m\to\G_m^n$ is a 1-ps then the compositions with the projections $\pi_i:\G^n_m\to \G_m$ yield characters of $\G_m$, so $\pi_i\circ \la(a)=a^{h_i}$ for some $h_i\in \Z$.
+\end{proof}
+
+\begin{remark}
+In general, if $f:\G_m^{n_1}\to \G_m^{n_2}$ is a homomorphism then there are $k_1,\cdots, k_{n_1}\in \Z^{n_2}$ such that
+\[f(a_1,\cdots, a_{n_1})=a_1^{k_1}\cdots a_{n_1}^{k_{n_1}}\]
+where $a^{(k_{1,h},\cdots, k_{n_2,h})}=(a^{k_{1,h}},\cdots, a^{k_{n_2,h}})$.
+\end{remark}
+
+\subsection{Character- and cocharacter- lattice}
+We have seen that the group of characters and cocharacters are free abelian groups of finite rank, let us formalize this by introducing lattices
+
+\begin{definition}[Lattice]
+A \textbf{lattice} is a free abelian group of finite rank.
+\end{definition}
+
+\begin{definition}[Character lattice]
+The \textbf{character lattice} of a torus $T$ is the group of characters $M=X(T)$.
+\end{definition}
+
+\begin{definition}[Cocharacter lattice]
+The \textbf{cocharacter lattice} of a torus $T$ is the group of 1-parameter subgroups $N$.
+\end{definition}
+
+\begin{notation}
+If $m\in M$ we may write $\chi^m$ to mean the character $m$, similarly for $n\in N$ and $\la^n$. While this is technically redundant, it is useful when we identify $M$ and $N$ with the abstract $\Z^k$.
+\end{notation}
+
+\begin{proposition}[]\label{PrDualityOfCharacterLattices}
+The lattices $M$ and $N$ are dual.
+\end{proposition}
+\begin{proof}
+We have a symmetric $\Z$-bilinear pairing
+\[\ps,:\funcDef{M\times N}{\Z}{(\chi,\la)}{k}\]
+where $k$ is the unique integer such that $\chi\circ\la(a)=a^k$.
+
+One can check that this becomes\footnote{$\chi^{(k_1,\cdots, k_n)}(a_1,\cdots, a_n)=a_1^{k_1}\cdots a_n^{k_n}$ and $\la^{(k_1,\cdots, k_n)}(a)=(a^{k_1},\cdots, a^{k_n})$, thus 
+\[\chi^{e_j}(\la^{e_i}(a))=\chi^{e_j}(1,\cdots, \overset{{\underset\downarrow i}}a, \cdots, 1)=a^{\delta_{ij}}.\]} the standard pairing $\Z^n\times \Z^n\to \Z$ given by the dot product upon choosing an isomorphism $T\cong \G_m^n$. In particular this is a non-degenerate pairing.
+\end{proof}
+
+\begin{remark}
+There is an isomorphism of groups
+\[\funcDef{N\otimes_\Z k^\ast}{T}{u\otimes t}{\la^u(t)}\]
+this amounts to saying that $T\cong \G_m^{\rnk N}$.
+\end{remark}
+
+\begin{notation}
+From now on, the torus with cocharacter lattice $N$ will be denoted by $T_N$. It's ``the" torus because $T_N=D(N^\ast)$ where $N^\ast$ is the dual of $N$ in the sense we had above.
+\end{notation}
+
+\begin{remark}
+Fixing an isomorphism $T_N\cong \G_m^n$ is equivalent to fixing a $\Z$-basis of $N$ (or $M$ equivalently).
+\end{remark}
+
+
+
+\section{Actions and representations}
+
+\begin{definition}
+An \textbf{action} of an algebraic group $G$ on a variety $X$ is a morphism $\mu:G\times X\to X$ that satisfies the diagrammatic axioms of an action:
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJHXFx0aW1lcyBHXFx0aW1lcyBYIl0sWzEsMCwiR1xcdGltZXMgWCJdLFswLDEsIkdcXHRpbWVzIFgiXSxbMSwxLCJYIl0sWzMsMCwiXFxTcGVjIGtcXHRpbWVzIFgiXSxbNCwwLCJYIl0sWzMsMSwiR1xcdGltZXMgWCJdLFswLDIsIihtLGlkX1gpIiwyXSxbMCwxLCIoaWRfRyxcXG11KSJdLFsxLDMsIlxcbXUiXSxbMiwzLCJcXG11IiwyXSxbNCw1LCJcXHNpbSJdLFs0LDYsIihlLGlkX1gpIiwyXSxbNiw1LCJcXG11IiwyXV0=
+\[\begin{tikzcd}
+	{G\times G\times X} & {G\times X} && {\Spec k\times X} & X \\
+	{G\times X} & X && {G\times X}
+	\arrow["{(id_G,\mu)}", from=1-1, to=1-2]
+	\arrow["{(m,id_X)}"', from=1-1, to=2-1]
+	\arrow["\mu", from=1-2, to=2-2]
+	\arrow["\sim", from=1-4, to=1-5]
+	\arrow["{(e,id_X)}"', from=1-4, to=2-4]
+	\arrow["\mu"', from=2-1, to=2-2]
+	\arrow["\mu"', from=2-4, to=1-5]
+\end{tikzcd}\]
+\end{definition}
+
+\begin{example}
+The conjugation action 
+\[\funcDef{\GL_n\times \Mc(n)}{\Mc(n)}{(A,B)}{ABA\ii}\] 
+is an action of the algebraic group $\GL_n$ on $\Mc(n)$.
+\end{example}
+
+\begin{example}
+Multiplication 
+\[\funcDef{\G_m}{\A^1}{(a,z)}{a\cdot z}\] 
+is an action. This action \textit{extends} to the projective line
+\[\funcDef{\G_m\times \Pj^1}{\Pj^1}{(a,[x_0,x_1])}{[x_0,ax_1]}\]
+\end{example}
+
+
+
+\begin{definition}
+A (finite dimensional) \textbf{representation} of an algebraic group $G$ is an algebraic group homomorphism $G\to \GL(V)$ for a (finite dimensional) $k$-vector space $V$.
+\end{definition}
+
+
+\begin{remark}
+A representation in this sense yields a set-theoretic linear action of $G$ on $V\cong k^n$.
+\end{remark}
+
+\begin{fact}
+If $G=\Spec A$ is affine, so that $A$ is a Hopf algebra, representations of $G$ are in bijection with $A$-comodules, that is, $k$-vector spaces $V$ equipped with the following data:
+\begin{itemize}
+\item $\rho:V\to V\otimes_k A$ a $k$-linear map
+\item  
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJBXFxvdGltZXMgQVxcb3RpbWVzIFYiXSxbMSwwLCJBXFxvdGltZXMgViJdLFswLDEsIkFcXG90aW1lcyBWIl0sWzAsMCwiViJdLFszLDEsIlxccmhvIl0sWzMsMiwiXFxyaG8iLDJdLFsyLDAsIlxcRGVsdGFcXG90aW1lcyBpZF9WIiwyXSxbMSwwLCJpZF9BXFxvdGltZXMgXFxyaG8iXV0=
+\[\begin{tikzcd}
+	V & {A\otimes V} \\
+	{A\otimes V} & {A\otimes A\otimes V}
+	\arrow["\rho", from=1-1, to=1-2]
+	\arrow["\rho"', from=1-1, to=2-1]
+	\arrow["{id_A\otimes \rho}", from=1-2, to=2-2]
+	\arrow["{\Delta\otimes id_V}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\item 
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBXFxvdGltZXMgViJdLFsxLDAsIlYiXSxbMCwwLCJrXFxvdGltZXMgViJdLFsxLDAsIlxccmhvIl0sWzEsMiwiXFxzaW0iLDJdLFswLDIsIlxcZVxcb3RpbWVzIGlkX1YiXV0=
+\[\begin{tikzcd}
+	{k\otimes V} & V \\
+	{A\otimes V}
+	\arrow["\sim"', from=1-2, to=1-1]
+	\arrow["\rho", from=1-2, to=2-1]
+	\arrow["{\e\otimes id_V}", from=2-1, to=1-1]
+\end{tikzcd}\]
+\end{itemize}
+Moreover, subrepresentations correspond to subcomodules.
+\end{fact}
+\begin{proof}[Idea]
+From $\rho$ you get $\funcDef{G\times V}{V}{(g,v)}{\rho(v)(g)}$ and this is a linear action.
+\end{proof}
+
+
+\begin{proposition}\label{PrRepresentationsOfToriSplit}
+Let $\al:T\to \GL(V)$ be a finite dimensional representation of the torus $T$. For $m\in M$ set
+\[V_m=\cpa{v\in V\mid \forall t\in T,\ \al(t)(v)={\chi^m(t)}\cdot v},\]
+then
+\[V=\bigoplus_{m\in M}V_m.\]
+\end{proposition}
+\begin{proof}[Sketch for $n=1$]
+Let $\rho:V\to V\otimes_k k[x^{\pm1}]$ be the corresponding coaction to $\al$.
+\begin{itemize}
+\item If $m\in M=\Z$ we have that (exercise)
+\[V_m=\cpa{v\in V\mid \rho(v)=v\otimes x^m}.\]
+\item If $\rho(v)=\sum_{m\in \Z} f_m(v)\otimes x^m$, then $f_m:V\to V$ is linear and $v=\sum_{m\in M}f_m(v)$.
+\item $f_m(v)\in V_m$
+\item $f_m\circ f_n=0$ if $n\neq m$
+\end{itemize}
+This tells us that $\cpa{f_n}_{n\in\Z}$ is a family of orthogonal projectors, so $V=\bigoplus_{m\in M}V_m$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
