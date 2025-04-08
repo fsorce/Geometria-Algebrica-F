@@ -493,6 +493,12 @@ If $\sigma=\Cone(A)$ then $\tau=\Cone(a\in A\mid a\in H_m)$. In particular $\tau
 A face is \textbf{proper} if it is not $\sigma$ itself.
 \end{definition}
 
+\begin{definition}[]
+The \textbf{relative interior} of a cone $\sigma$ is
+\[\Relint(\sigma)=\sigma\bs \bigcup_{\tau<\sigma}\tau,\]
+that is, the topological interior of the cone as a subset of $\Span_\R(\sigma)$.
+\end{definition}
+
 \begin{fact}
 The following are true:
 \begin{itemize}
@@ -882,7 +888,93 @@ The point is fixed if $\chi^s(a)\gamma(s)=\gamma(s)$ for all $a\in T_N,\ \in S$.
 The point in the statement of the lemma above can be thought of as the ``most singular point of $X$".
 \end{remark}	
 
+\begin{remark}
+A toric variety $U_\sigma$ has a fixed point for the action of the torus if and only if $\sigma$ is full-dimensional.
+\end{remark}
 
+\begin{remark}
+The maximal ideal of $k[S]$ corresponding to the the torus fixed point (when $S$ is sharp) is $\pa{t^m\mid m\in S\nz}$.
+\end{remark}
+\begin{example}
+In $k[\N^n]=k[x_1,\cdots, x_n]$ this ideal would be $(x_1,\cdots, x_n)$.
+\end{example}
+
+\begin{proposition}[]\label{PrDimensionOfTangentAtTorusFixedPoint}
+If $\sigma$ is a strongly convex cone of maximal dimension and $p_\sigma\in U_\sigma$ is the torus fixed point then
+\[\dim_k T_{p_\sigma}U_\sigma=\abs H\]
+where $H$ is the Hilbert basis of $S_\sigma$.
+\end{proposition}
+\begin{proof}
+The maximal ideal which corresponds to $p_\sigma$ is $\mf=\pa{t^m\mid m\in \sigma^\vee\cap M\nz}$ and as a $k$-vector space we have
+\[\mf=\bigoplus_{\smat{m\neq 0,\\ m\in S_\sigma}}kt^m=\bigoplus_{m\in H\nz}kt^m\oplus
+\under{\mf^2}{\bigoplus_{\smat{m \text{ reducible}\\ m\neq 0}}kt^m}\]
+so $\dim_k(\mf/\mf^2)=\abs H$. Since $\mf/\mf^2\cong \dfrac{\mf A_\mf}{\mf^2A_\mf}=\mf_{p_\sigma}/\mf_{p_\sigma}^2$ we are done.
+\end{proof}
+
+\begin{theorem}[]\label{ThSmoothAffineToricVarietyIffSmoothCone}
+We have that $U_\sigma$ is smooth $\coimplies$ $\sigma$ is a smooth cone.
+\end{theorem}
+\begin{proof}
+We give the two implications
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\impliedby}$] If $\sigma$ is smooth then we can assume up to an integral change of basis that $\sigma=\Cone(e_1,\cdots, e_k)\subseteq \R^n$ and $\sigma^\vee=\Cone(e_1,\cdots, e_k,\pm e_{k+1},\cdots, \pm e_n)$, so $U_\sigma=\A^n\times \G_m^{n-k}$, which is a smooth variety.
+\item[$\boxed{\implies}$] We first consider the full dimensional case and then massage the general case into it:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item [$\boxed{\text{full-dim}}$] Note that $\sigma^\vee$ is strictly convex. Let $p_\sigma\in U_\sigma$ be the torus fixed point. Smoothness at $p_\sigma$ implies that
+\[n=\dim U_\sigma=\dim T_{p_\sigma}U_\sigma=\abs H\geq \abs{\text{rays of }\sigma^\vee}\geq n\]
+where the first inequality comes from the fact that $H$ contains the minimal ray generators, while the second comes from $\sigma^\vee$ being full-dimensional\footnote{we always assume $\sigma$ strictly convex.}. It follows that $\sigma^\vee$ has $n$ rays. 
+
+Since $M=S_\sigma^{gp}$, the $n$ minimal ray generators of $\sigma^\vee$ must be a $\Z$-basis of $M$ by a rank argument. Thus $\sigma^\vee$ is smooth and so $\sigma$ itself is smooth.
+\item [$\boxed{\text{general}}$] Consider the saturated (so we also consider elements of $N$ that lie in $\sigma$ after taking some multiple) $\Z$-span $N_1\subseteq N$ of $\sigma\cap N$. We can now write $N=N_1\oplus N_2$ because we constructed $N_2=N/N_1$ in a way that makes it torsion-free.
+
+We can now think of $\sigma$ as a cone in $(N_1)_\R$ also, not just $N_\R$. These give two monoid algebras
+\[k[S_{\sigma,N}]=k[\sigma^\vee\cap M],\quad k[S_{\sigma,N_1}]=k[\sigma^\vee\cap M_1]\]
+where $M_1=(N_1)^\vee$.
+
+It turns out that\footnote{for example, take $\sigma=\Cone(e_1)\subseteq \R^2$. $N_1=\Z\times \cpa0\subseteq \Z^2$, $M_2$ is the perpendicular ****************} (exercise) $S_{\sigma,N}\cong S_{\sigma,N_1}\oplus M_2$, and so $k[S_{\sigma,N}]\cong k[S_{\sigma,N_1}]\otimes k[M_2]$, so
+\[U_{\sigma,N}\cong U_{\sigma,N_1}\times T_{N_2}.\]
+Now if $U_{\sigma}$ is smooth, it follows that $U_{\sigma,N_1}$ is smooth (exercise, look at dimensions of tangents in products). Now $U_{\sigma,N_1}$ is like in the above case, so $\sigma\subseteq N_1$ is smooth, meaning that it must be smooth in $N$ also.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\section{Faces correspond to affine open subsets}
+Consider $\sigma$ a strictly convex rational cone. Let $\tau\leq\sigma$ be a face. We will now see that $U_\tau$ can naturally be identified with a principal open subset of $U_\sigma$.
+
+
+Recall that $\tau\leq \sigma$ means that there exists some $m\in \sigma^\vee$ such that
+\[\tau=\sigma\cap H_m.\]
+\begin{proposition}[]\label{PrFacesCorrespondToPrincipalOpenSubsetsOfAffineToricVariety}
+If $\tau\leq \sigma$ is cut out by the hyperplane $H_m$ we have that $k[S_\tau]=k[\tau^\vee\cap M]$ is naturally identified with $k[S_\sigma]_{t^m}$.
+\end{proposition}
+\begin{proof}
+If $\tau\leq \sigma$ then $S_\sigma$ is a submonoid of $S_\tau$ and $\ps{m,n}=0$ for all $n\in \tau$ means that $\pm m\in S_\tau$. This implies that $S_\sigma+\N(-m)$ is a submonoid of $S_\tau$. If we check that this inclusion is an equality we are done because localizing at $t^m$ is the same as adding $t^{-m}$ to the generators.
+
+Take $m'\in S_\tau$. Note that $\ps{m',n}\geq 0$ for all $n\in \tau$. Let $\sigma=\Cone(S)$ with $S\subseteq N$ finite and consider
+\[C=\max\cpa{\abs{\ps{m',s}}\mid s\in S}\in \N.\]
+If we show that $m'+Cm\in S_\sigma$ then we are done. To check this note that if $u\in \sigma$ then
+\[\ps{m'+Cm,u}=\ps{m',u}+C\ps{m,u}.\]
+If $u\in \tau$ then $\ps{m,u}=0$ and $\ps{m',u}\geq 0$ since $m'\in S_\tau$ and we are done. Otherwise $\ps{m,n}\geq 1$ and therefore, for $u=s\in S$ minimal ray generator, we have
+\[\ps{m',s}+C\ps{m,s}\geq \ps{m',s}+C\geq 0\]
+where the last inequality comes from the definition of $C$.
+\end{proof}
+
+
+\begin{remark}
+If $\sigma$ and $\sigma'$ are cones in $N_\R$ and $\sigma\cap \sigma'=\tau$ is a face of both, we have a diagram
+% https://q.uiver.app/#q=WzAsMyxbMSwxLCJVX1xcdGF1Il0sWzAsMCwiVV9cXHNpZ21hIl0sWzIsMCwiVV97XFxzaWdtYSd9Il0sWzAsMiwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDAsIlxcc3Vwc2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	{U_\sigma} && {U_{\sigma'}} \\
+	& {U_\tau}
+	\arrow["\supseteq"{marking, allow upside down}, draw=none, from=1-1, to=2-2]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=2-2, to=1-3]
+\end{tikzcd}\]
+We will be able to glue $U_\sigma$ and $U_{\sigma'}$ along $U_\tau$ to get a, possibly non-affine, toric variety.
+\end{remark}
 
 
 

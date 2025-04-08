@@ -1,0 +1,375 @@
+\chapter{General normal toric varieties}
+
+Recall that a scheme is \textbf{separated} if the image of the diagonal is closed.
+
+\begin{fact}
+All quasi-projective varieties are separated.
+\end{fact}
+
+\begin{definition}[]
+An \textbf{(abstract) variety over $k$} is an integral separated scheme of finite type over $k$.
+\end{definition}
+
+\begin{definition}[]
+A \textbf{toric variety} is a variety $X$ over $k$ with dense open torus $T_N\subseteq X$ such that the translation action of $T_N$ on itself extends to $X$.
+\end{definition}
+
+\section{Toric varieties from fans}
+
+Given a fan $\Sigma$ in $N_\R$ we have affine toric varieties $U_\sigma$ for each $\sigma\in \Sigma$, which we are going to glue together as follows:
+
+Recall that if $\tau\leq \sigma$ then $\tau=H_m\cap\sigma$ and (\ref{PrFacesCorrespondToPrincipalOpenSubsetsOfAffineToricVariety})
+\[k[S_\tau]\cong k[S_\sigma]_{t^{m}}\]
+and so
+\[U_\tau\cong (U_\sigma)_{t^m}.\]
+
+\begin{lemma}[]\label{LmSeparatingHyperplane}
+If $\tau=\sigma_1\cap \sigma_2$ and it is a face of both then there exists $m\in (\sigma_1^\vee)\cap (-\sigma_2)^\vee\cap M$ such that 
+\[\sigma_1\cap H_m=\sigma_2\cap H_m=\tau.\]
+This is called the \textbf{separating hyperplane}.
+\end{lemma}
+
+By the lemma, we can identify $U_\tau$ with both $(U_{\sigma_1})_{t^m}$ and $(U_{\sigma_2})_{t^{-m}}$, so we can use this isomorphism $g_{\sigma_1,\sigma_2}:(U_{\sigma_1})_{t^m}\to (U_{\sigma_2})_{t^{-m}}$ to glue $U_{\sigma_1}$ and $U_{\sigma_2}$ along $U_\tau$.
+
+It is possible to check (exercise) that the compatibilities are satisfied (descent data stuff). It is useful in the verification to consider the following diagram (showing its commutativity) for $\sigma,\sigma',\sigma''\in \Sigma$:
+% https://q.uiver.app/#q=WzAsNyxbMCwxLCJVX3tcXHNpZ21hXFxjYXAgXFxzaWdtYSdcXGNhcCBcXHNpZ21hJyd9Il0sWzEsMSwiVV97XFxzaWdtYVxcY2FwIFxcc2lnbWEnJ30iXSxbMSwwLCJVX3tcXHNpZ21hXFxjYXAgXFxzaWdtYSd9Il0sWzMsMCwiVV9cXHNpZ21hIl0sWzMsMSwiVV97XFxzaWdtYSd9Il0sWzEsMiwiVV97XFxzaWdtYSdcXGNhcCBcXHNpZ21hJyd9Il0sWzMsMiwiVV97XFxzaWdtYScnfSJdLFsyLDRdLFsyLDNdLFswLDJdLFswLDFdLFs1LDZdLFswLDVdLFsxLDZdLFsxLDNdLFs1LDRdXQ==
+\[\begin{tikzcd}
+	& {U_{\sigma\cap \sigma'}} && {U_\sigma} \\
+	{U_{\sigma\cap \sigma'\cap \sigma''}} & {U_{\sigma\cap \sigma''}} && {U_{\sigma'}} \\
+	& {U_{\sigma'\cap \sigma''}} && {U_{\sigma''}}
+	\arrow[from=1-2, to=1-4]
+	\arrow[from=1-2, to=2-4]
+	\arrow[from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-1, to=3-2]
+	\arrow[from=2-2, to=1-4]
+	\arrow[from=2-2, to=3-4]
+	\arrow[from=3-2, to=2-4]
+	\arrow[from=3-2, to=3-4]
+\end{tikzcd}\]
+
+We denote the resulting variety by $X_\Sigma$.
+
+
+\begin{theorem}[]\label{ThToricVarietyFromFan}
+$X_\Sigma$ is a toric variety.
+\end{theorem}
+\begin{proof}
+The torus of $X_\Sigma$ is $U_\sigma\cong T_N$ for $\sigma=\cpa0$, which is contained in any other $U_\sigma$ as a dense open. So it is a dense open in $X_\Sigma$ as well. The actions $T_N\times U_\sigma\to U_\sigma$ are compatible with the gluing data so they glue to a global action $T_N\times X_\Sigma\to X_\Sigma$ which extends the torus action.
+
+Let us now check that $X_\Sigma$ is separated. It is enough to show that for all $\sigma_1,\sigma_2\in \Sigma$ with intersection $\tau$ then the ``diagonal" $\Delta:U_\tau\to U_{\sigma_1}\times U_{\sigma_2}$ has closed image. This is because the image of the actual diagonal is the union of these images and so it will be a finite union of closed subsets of $X_\Sigma\times X_\Sigma$. This is now an algebraic question because that morphism is closed when the map
+\[\funcDef{k[S_{\sigma_1}]\otimes k[S_{\sigma_2}]}{k[S_\tau]}{t^m\otimes t^n}{t^{m+n}}\]
+is surjective. This is the case because $S_\tau=S_{\sigma_1}+S_{\sigma_2}$ as submonoids of $M$, indeed
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\subseteq}$] Recall that $S_\tau=S_{\sigma_1}+\N(-m)\subseteq S_{\sigma_1}+S_{\sigma_2}$ for $H_m$ separating hyperplane. The inclusion of $-m$ in $S_{\sigma_2}$ follows because $m\in (-\sigma_2)^\vee\implies -m\in \sigma_2^\vee$.
+\item[$\boxed{\supseteq}$] $\sigma_1^\vee+\sigma_2^\vee\subseteq(\sigma_1\cap\sigma_2)^\vee=\tau^\vee$ and now intersect with $M$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+We will see later that every toric variety is of this form.
+
+\subsection{Examples}
+
+\begin{example}
+The fan of $\Pj^2$ is the normal fan of the the simplex $\Delta_2$:
+\[\Sigma_{\Delta_2}=\cpa{\sigma_1,\sigma_2,\sigma_3,\sigma_1\cap\sigma_2,\sigma_1\cap\sigma_3,\sigma_2\cap\sigma_3,\cpa0}\]
+where $\sigma_1=\Cone((1,0),(0,1))$, $\sigma_2=\Cone((0,1),(-1,-1))$ and $\sigma_3=\Cone((1,0),(-1,-1))$.
+
+
+Note that $\det\pa{\smat{1&0\\-1&-1}}=-1$ is invertible in $\Z$, so $(1,0)$, $(-1,-1)$ is a $\Z$-basis of $\Z^2$ and $\sigma_3$ is smooth. A similar remark holds for the other cones.
+
+Note that $\sigma_1^\vee\cap M=\ps{e_1,e_2}$ so $U_{\sigma_1}\cong \Spec k[x,y]$. Similarly $U_{\sigma_2}=\Spec k[x\ii,x\ii y]$ and $U_{\sigma_3}=\Spec k[y\ii,x y\ii]$. Abstractly $U_{\sigma_1}\cong U_{\sigma_2}\cong U_{\sigma_3}\cong \A^2$ but the notation shows us the transition functions.
+
+If in $\Pj^2$ we have $[x_0,x_1,x_2]$ we are saying $x=x_1/x_0$ and $y=x_2/x_0$. Indeed $x_0/x_1=x\ii$, $x_2/x_1=x\ii y$ etc.
+\end{example}
+
+\begin{example}
+The fan of $\Pj^n$ is the one in $\R^n$ given by the cones generated by proper (possibly empty) subsets of
+\[\cpa{e_1,\cdots, e_n, -e_1-\cdots-e_n}.\]
+\end{example}
+
+\begin{example}
+Affine and projective toric varieties are of this form. For $U_\sigma$ take $U_\sigma=\cpa{\text{faces of $\sigma$}}$ and in the projective case we take the normal fan.
+\end{example}
+
+
+\begin{remark}
+All toric varieties of dimension 1 are $\G_m$, $\A^1$ and $\Pj^1$, given by the possible fans in $\R$: $\cpa{\cpa{0}}$, $\cpa{\Cone(1), \cpa0}$ and $\cpa{\Cone(1),\Cone(-1),\cpa0}$.
+\end{remark}
+
+
+\begin{example}
+Consider the fan $\Sigma=\cpa{\tau_1,\tau_2,\cpa0}$ with $\tau_1=\Cone((1,0))$ and $\tau_2=\Cone((0,1))$ in $\R^2$.
+
+$X_\Sigma$ is obtained by gluing together $U_{\tau_1}=\A^1\times \G_m$ and $U_{\tau_2}=\G_m\times \A^1$ along $\G_m\times\G_m$. This results in $\A^2\nz$, which we know to be neither affine nor projective.
+\end{example}
+
+\begin{remark}
+We will see that there is a bijection between torus orbits on $X_\Sigma$ and cones in $\Sigma$, so deliting a cone $\sigma$ (and all other cones which contain it as a face) from the fan corresponds to removing the corresponding orbit.
+\end{remark}
+
+
+\begin{example}
+Consider $\Sigma=\cpa{\sigma_1,\sigma_2}$ with $\sigma_1=\Cone((0,1),(1,1))$ and $\sigma_2=\Cone((1,0),(1,1))$. It turns out that $X_\Sigma$ in this case is $\Bl_{(0,0)}\A^2$. Recall that $\Bl_{(0,0)}\A^2=V(x_0y-x_1x)\subseteq \Pj^1\times\A^2$. If $x_0\neq 0$ and we name $t=x_1/x_0$ then we get that $\Bl_{(0,0)}\A^2\cap U_0\times \A^2=\A^3$ looks like $V(y-tx)$, which is isomorphic to $\A^2=\Spec k[x,t]$.
+
+The $X_\Sigma$ is obtained by gluing two copies of $U_{\sigma_1}\cong \A^2$ and $U_{\sigma_2}\cong \A^2$. It is possible to check that the gluing conditions look like the ones we implied while looking at the affine charts of $\Bl_{(0,0)}\A^2$:
+$\sigma_1^\vee=\Cone(e_1,e_2-e_1)$, $\sigma_2^\vee=\Cone(e_2,e_1-e_2)$, so $U_{\sigma_1}=\Spec k[x,y x\ii]$, $U_{\sigma_2}=\Spec k[y,xy\ii]$ and now if we say $y=xt$ then we get the conditions from before.
+\end{example}
+
+\begin{remark}
+More generally, the fan generated by $\cpa{e_1,\cdots, e_n,e_1+\cdots+e_n}$ gives $\Bl_0\A^n$.
+\end{remark}
+
+\begin{definition}[]
+If $\Sigma'$ and $\Sigma$ are fans in $N_\R$, $\Sigma'$ is a \textbf{refinement} of $\Sigma$ if for all $\sigma'\in \Sigma'$ there exists $\sigma\in \Sigma$ such that $\sigma'\subseteq \sigma$.
+\end{definition}
+
+\begin{remark}
+The previous example was a special case of the following result: if $\Sigma'$ is a refinement of $\Sigma$ there is an induced ``toric morphism" $X_{\Sigma'}\to X_\Sigma$ which is always proper and birational.
+\end{remark}
+
+
+\section{Orbit-cone correspondence}
+
+As we mentioned, there is a correspondence between torus orbits in $X_\Sigma$ and cones in $\Sigma$. This allows us to reconstruct the fan $\Sigma$ starting from $X_\Sigma$.
+
+The way to detect cones of $\Sigma$ from the $T_N$-action is by loocking at limits $\lim_{t\to 0}\la^n(t)$ of 1-parameter subgroups $\la^n:\G_m\to T_N$. This statement doesn't make sense as stated but we are trying to emulate limits like for 1-ps in differential geometry. If $k=\C$ the limit is the actual limit in the euclidia topology.
+
+
+\begin{definition}[]
+Let $\la^n:\G_m\to T_N\subseteq X_\Sigma$ be a 1-ps. $\lim_{t\to 0}\la^n(t)$ is defined to be $\wt{\la^n}(0)$ if $\la^n$ extends to a morphism $\wt{\la^n}:\A^1\to X_\Sigma$ (which is uniquely determined if it exists by separatedness of $X_\Sigma$).
+\end{definition}
+
+\begin{example}
+The 1-ps $\G_m\to \G_m\subseteq \A^1$ given by $\la^n(t)=t$ has $\lim_{t\to 0}\la^n(t)=0$. The one given by $\la^n(t)=t\ii$ does not extend and so has no limit.
+\end{example}
+
+\begin{remark}
+The codomain of the extension matters. The map $t\mapsto t\ii$ seen as a morphism $\G_m\to \Pj^1$ DOES extend to $\A^1\to \Pj^1$ and the value at $0$ would be the point at infinity.
+\end{remark}
+
+For $u$ varying in $N$, the possible limits $\lim_{t\to 0}\la^u(t)\in X_\Sigma$ are finitely many, one for each cone in $\Sigma$. It will be the case that the limit is $\gamma_\sigma$ for $\sigma$ cone exactly when $u\in \Relint(\sigma)\subseteq N_\R$.
+
+
+
+\begin{example}
+In $\Pj^2$ consider the cocharacter $u=(a,b)\in N=\Z^2$ and the relative 1-parameter subgroup 
+\[\la^{(a,b)}:\funcDef{\G_m}{\Pj^2}{t}{[1,t^a,t^b]}\]
+What is the limit
+\[\lim_{t\to 0}[1,t^a,t^b]=?\]
+\begin{itemize}
+	\item If $a,b>0$ then $[1,t^a,t^b]\to [1,0,0]$.
+	\item If $a<0$ and $b>a$ then $[1,t^a,t^b]=[t^{-a},1,t^{b-a}]$ so in that case the limit is $[0,1,0]$. 
+	\item If $b<0$ and $a>b$ then the limit is $[0,0,1]$.
+	\item If $a=0$ and $b>0$ then $[1,1,t^b]\to [1,1,0]$.
+	\item If $a=b$ and $b<0$ then $[0,1,1]$.
+	\item If $b=0$ and $a>0$ then $[1,0,1]$.
+	\item Finally, for $a=b=0$ we get $[1,1,1]$.
+\end{itemize}
+\end{example}
+
+\begin{definition}[]
+Given a fan $\Sigma$, the limit points $\gamma_\sigma$ are defined as follows:
+
+$\gamma_\sigma\in U_\sigma\subseteq X_\Sigma$ is defined by the monoid homomorphism\footnote{the intersection with $\sigma^\perp$ is relevant only if $\sigma$ is not full-dimensional.}
+\[\gamma_\sigma:\funcDef{S_\sigma}{(k,\cdot)}{m}{\begin{cases}
+	1&\text{if }m\in \sigma^\vee\cap M\cap \sigma^\perp\\
+	0&\text{otherwise}
+\end{cases}}\]
+\end{definition}
+
+\begin{remark}
+The map $\gamma_\sigma$ above is a homomorphism
+\end{remark}
+\begin{proof}
+$\sigma^\perp\cap \sigma^\vee$ is a face of $\sigma^\vee$, so if $m,m'\in \sigma^\vee\cap M$, having $m+m'\in \sigma^\vee\cap M\cap \sigma^\perp$ implies $m+m'\in \sigma^\perp$ ********
+\end{proof}
+
+
+\begin{remark}
+*******
+and the torus-fixed point $p_\sigma$ of $U_\sigma$ **** that we analyzed before.
+\end{remark}
+
+
+\begin{example}
+If $\sigma=\R_{\geq0}\subseteq \R^2$ ($\Cone(e_1)$) then $S_\sigma=\N\oplus \Z$ ($\sigma^\vee\cap \Z^2$) then
+\[\gamma_\sigma:\funcDef{\N\oplus \Z}{k}{(n,m)}{\begin{cases}
+	1 &\text{if } n=0\\
+	0 &
+\end{cases}}\]
+$U_\sigma=\A^1\times \G_m$ and $\gamma_\sigma\leftrightarrow(0,1)$, when there is a torus factor, i.e. $\sigma$ not full-dimensional, and $U_\sigma\cong U_{\sigma,N_1}\times T_{N_2}$ where $N_1$ is the saturated $\Z$-span of $\sigma\cap N$
+
+
+$\gamma_\sigma=(p_{\sigma,N_1},e)$ where the first is the torus-fixed point of $U_{\sigma,N_1}$ and $e$ is the neutral element of $T_{N_2}$.
+\end{example}
+
+
+\begin{remark}
+If $\tau\leq \sigma$ then $U_\tau\subseteq U_\sigma$ as a principal open, so $\gamma_\tau$ is also a point of $U_\sigma$, corresponding to the monoid homomorphism
+\[\funcDef{S_\sigma}{k}{m}{\begin{cases}
+	1 &\text{if }m\in \sigma^\vee\cap \tau^\perp\cap M\\
+	0&\text{otherwise}
+\end{cases}}\]
+\end{remark}
+
+
+
+\begin{remark}
+The different $\gamma_\sigma$ are distinct as points of $X_\Sigma$. The idea is to prove that if $\tau<\sigma$ then\footnote{use the fact that the image of the embedding of $U_\tau\inj U_\sigma$ is given by the homomorphisms $S_\sigma\to k$ such that $\gamma(m)\in k^\ast$, where $m\in M$ is such that $\tau=\sigma\cap H_m$.} $\gamma_\sigma\notin U_\tau$, because in that case $\gamma_{\sigma}=\gamma_{\sigma'}$ but $\sigma\cap \sigma'$ would be a proper face of at least one of $\sigma$ or $\sigma'$ if they were different cones, contradiction.
+\end{remark}
+
+
+The idea now is to show that the orbits of the torus action are precisely the orbits of these $\gamma_\sigma$, which we write $\Oc(\sigma)=T_N\cdot \gamma_\sigma$.
+
+
+
+
+\begin{lemma}[]\label{LmExistenceCriterionForLimitsInUsigma}
+The limit $\lim_{t\to 0}\la^u(t)$ exists in $U_\sigma$ if and only if for all $m\in S_\sigma$, $\lim_{t\to 0}\chi^m\la^u(t)$ exists in $\A^1$.
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEdfbSJdLFsxLDAsIlRfTiJdLFsyLDAsIlVfXFxzaWdtYSJdLFszLDAsIlxcQV4xIl0sWzIsMywiXFxjaGlebSJdLFswLDEsIlxcbGFedSJdLFsxLDIsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCIiLDIseyJjdXJ2ZSI6Mn1dXQ==
+\[\begin{tikzcd}
+	{\G_m} & {T_N} & {U_\sigma} & {\A^1}
+	\arrow["{\la^u}", from=1-1, to=1-2]
+	\arrow[curve={height=12pt}, from=1-1, to=1-4]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-2, to=1-3]
+	\arrow["{\chi^m}", from=1-3, to=1-4]
+\end{tikzcd}\]
+\end{lemma}
+\begin{proof}
+We give the two implications
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] If $\G_m\to U_\sigma$ exentds to $\A^1$ then the composite $\G_m\to U_\sigma\to \A^1$ will also extend by composing the extension with $\chi^m:U_\sigma\to \A^1$.
+\item[$\boxed{\impliedby}$] If $A=\cpa{a_1,\cdots, a_s}\subseteq M$ is a finite set of generators for $S_\sigma$ then $k[x_1,\cdots, x_s]\onto k[S_\sigma]$ and this induces a closed embedding $U_\sigma\inj \A^s$. By assumption, $\G_m\to U_\sigma\to \A^s$ extends to $\A^1\to \A^s$ (it does in all coordinates). Since $U_\sigma$ is closed, the extension will factor through $U_\sigma$ (you can take the closure $Z$ of the images of $\G_m$ and $\A^1$ in $\A^s$, which are the same because $\G_m$ is dense in $\A^1$, and then $Z\subseteq U_\sigma$ because $U_\sigma$ is closed and $Z$ is the closure of the image of $\G_m$ which is contained in the image of $U_\sigma$, showing the desired factorization).
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+We can also say that, when the limit exists, the limit point in $U_\sigma$ corresponds to the homomorphism
+\[\funcDef{S_\sigma}{k}{m}{\lim_{t\to 0}\chi^m\la^u(t)},\]
+indeed, using the embedding $U_\sigma\subseteq \A^s$ as in the proof, points of $U_\sigma$ become points of $\A^s$ (homomorphisms $\N^s\to k$ obtained by precomposing with the presentation of $S_\sigma$ given by fixing generators) and the limit point is now the one with coordinated given by that formula for $m=a_i$ with $1\leq i\leq s$. Since $a_1,\cdots, a_s$ generate $S_\sigma$, the homomorphisms agree on generators of the domain.
+\end{remark}
+
+\begin{proposition}[]\label{PrLimitsOf1PSAreTheGammaSigma}
+The limit $\lim_{t\to 0}\la^u(t)$ exists in $U_\sigma$ if and only if $u\in \sigma$ in $N_\R$ and if $u\in \Relint(\sigma)$ then the limit is $\gamma_\sigma$.
+\end{proposition}
+\begin{proof}
+By the lemma (\ref{LmExistenceCriterionForLimitsInUsigma}), the limit exists in $U_\sigma$ if and only if $\lim_{t\to 0}\chi^m\la^u(t)$ exists in $\A^1$ for all $m\in S_\sigma$. Let us write $t^{\ps{m,n}}=\chi^m\la^u(t)$. We have that the limit exists if and only if for all $m\in S_\sigma$ we have $\ps{m,u}\geq 0$, that is, $u\in (\sigma^\vee)^\vee=\sigma$.
+
+
+Thanks to the previous remark, we can say that the limit point will correspond to the homomorphism
+\[\funcDef{S_\sigma}{k}{m}{\lim_{t\to 0}t^{\ps{m,u}}}\]
+Now, if $u\in \Relint(\sigma)$ then (exercise)
+\[\begin{cases}
+\ps{m,u}>0 &\text{ if }m\in S_\sigma\bs \sigma^\perp\\
+\ps{m,u}=0 &\text{ if }m\in S_\sigma\cap \sigma^\perp
+\end{cases}\]
+and this gives exactly $\gamma_\sigma$ as a limit point\footnote{the idea is that $\lim_{t\to 0}t^{a}$ for $a>0$ is $0$, while $\lim_{t\to 0}t^0=\lim_{t\to 0}1=1$.}.
+\end{proof}
+
+
+
+
+We will now describe the orbits $\Oc(\sigma)$ of the torus action on $X_\Sigma$ and their closures $V(\sigma)$ starting from the fan $\Sigma$ and then embed them in $X_\Sigma$.
+
+
+
+For $\sigma\in \Sigma$, let $N_\sigma\subseteq N$ be the saturated sublattice of $N$ generated by $\sigma\cap N$. We have that
+\[N(\sigma)=N/N_\sigma\]
+is also a lattice and its dual can be canonically identified with $M(\sigma)=\sigma^\perp\cap M$ via the non-degenerate pairing $M(\sigma)\times N(\sigma)\to \Z$ induced by $M\times N\to \Sigma$.
+
+
+
+Let $\Oc(\sigma)$ be the torus corresponding to these lattices, $\Oc(\sigma)=\Spec k[M(\sigma)]$. Note that $\dim_\R (N_\sigma)_\R=\dim \sigma$, so $\dim \Oc(\sigma)=n-\dim \sigma$, where $n=\rnk N$.
+
+Also $M(\sigma)\subseteq M$ gives a surjection of tori $T_N\onto \Oc(\sigma)$, which gives an action of $T_N$ on $\Oc(\sigma)$.
+
+
+To define $V(\sigma)$ we consider the ``star" of $\sigma$ in $\Sigma$:
+\begin{definition}[]
+Given a fan $\Sigma$ and a cone $\sigma$ in the fan, the \textbf{star} of $\sigma$ is
+\[\Star(\sigma)=\cpa{\tau\in\Sigma\mid \sigma\leq \tau}.\]
+\end{definition}
+
+\begin{remark}
+the images of the cones in $\Star(\sigma)$ in the quotient $N(\sigma)=N/S_\sigma$ form a fan, which we still denote $\Star(\sigma)$.
+
+
+PICTURE 
+\end{remark}
+
+Let $V(\sigma)=X_{\Star(\sigma)}$, the toric variety given by this fan in $N(\sigma)_\R$. This is an $\Oc(\sigma)$-toric variety (i.e., $\Oc(\sigma)$ is the torus for this variety).
+
+By construction, $V(\tau)=\bigcup_{\tau\leq \sigma}U_\sigma(\tau)$ where
+\[U_\sigma(\tau)=\Spec k[\ol\sigma^\vee\cap M(\tau)]\]
+where $\ol \sigma\in \Star(\tau)$ is the quotient $\sigma/N_\tau$.
+
+We can embed $V(\tau)$ in $X_\sigma$ as an orbit closure: we can construct the embedding locally as follows:
+
+fix $\sigma$ such that $\tau\leq \sigma$. We have a closed embedding $U_\sigma(\tau)\inj U_\sigma$ corresponding the homomorphism $k[\sigma^\vee\cap M]\to k[\sigma^\vee\cap M\cap \tau^\perp]$ given by sending $t^m$ to $t^m$ if $m\in \tau^\perp$ or to $0$ otherwise. Equivalently this amounts to extending $\gamma:\sigma^\vee\cap M\cap \tau^\perp\to k$ to
+\[\wt\gamma:\funcDef{\sigma^\vee\cap M}{k}{m}{\begin{cases}
+	\gamma(m) &\text{if }m\in \tau^\perp\\
+	0 &\text{overwise}
+\end{cases}}\]
+
+This makes sense because $\sigma^\vee\cap \tau^\perp$ is a face of $\sigma^\vee$.
+
+
+These embeddings are compatible: if $\tau\leq \sigma\leq \sigma'$ then
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJVX1xcc2lnbWEoXFx0YXUpIl0sWzIsMCwiVV9cXHNpZ21hIl0sWzIsMSwiVV97XFxzaWdtYSd9Il0sWzAsMSwiVV97XFxzaWdtYSd9KFxcdGF1KSJdLFswLDEsImNsb3NlZCIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwib3BlbiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMywib3BlbiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsMiwiY2xvc2VkIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	{U_\sigma(\tau)} && {U_\sigma} \\
+	{U_{\sigma'}(\tau)} && {U_{\sigma'}}
+	\arrow["closed", hook, from=1-1, to=1-3]
+	\arrow["open"', hook, from=1-1, to=2-1]
+	\arrow["open", hook, from=1-3, to=2-3]
+	\arrow["closed"', hook, from=2-1, to=2-3]
+\end{tikzcd}\]
+commutes (check on the algebras).
+
+So these maps glue to a closed embedding $V(\tau)\to \bigcup_{\tau\leq \sigma}U_\sigma\subseteq X_{\Sigma}$, that is, we now only know that the first of the two immersions is closed.
+
+We will prove that $V(\tau)\cap U_{\sigma'}=\emptyset$ if $\tau\not\leq \sigma'$, so that $V(\tau)$ is actually closed in $X_\Sigma$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
