@@ -1,0 +1,266 @@
+\chapter{Divisors on toric varieties}
+
+\section{Class group}
+Let $\Sigma$ be a fan in $N_\R$. 
+\begin{notation}
+Set $\Sigma(k):=\cpa{\sigma\in \Sigma\mid \dim \sigma=k}$.
+\end{notation}
+
+For each $\rho\in \Sigma(1)$, by orbit-cone correspondence (\ref{PrOrbit-ConeCorrespondence}), we get a prime divisor $D_\rho=V(\rho)=\ol{\Oc(\rho)}$.
+
+Let $v_\rho:k(X_\Sigma)^\ast\to \Z$ be the valuation of the local ring of $D_\rho$.
+
+
+Recall that each $\rho$ has a minimal ray generator $u_\rho\in \rho\cap N$. Note that for $m\in M$, 
+\[\chi^m:T_N\to \G_m\]
+is a regular function defined on an open subset of $X_\Sigma$, so it yields a rational function on $X_\Sigma$.
+
+\begin{proposition}[]\label{PrValuationOfCharacter}
+$v_\rho(\chi^m)=\ps{m,u_\rho}$.
+\end{proposition}
+\begin{proof}
+Extend $u_\rho$ to a $\Z$-basis of $N$, say $u_\rho,e_2,\cdots, e_n$.
+Recall that $U_\rho\cong \A^1\times\G_m^{n-1}$ and $D_\rho\cap U_\rho$ under the isomorphism is described by $x_1=0$, so \[\Oc_{X_\Sigma,D_\rho}\cong \Oc_{U_\rho,D_\rho\cap U_\rho}\cong \Oc_{\A^1\times\G_m^{n-1},\cpa{x_1=0}}= k[x_1,x_2^{\pm},\cdots, x_n^{\pm}]_{(x_1)}.\]
+Thus $v_\rho(f)$ is the unique integer such that $f=x_1^{v_\rho(f)}g/h$ where $g,h\notin (x_1)$ for any $f\in k(X_\Sigma)^\ast$.
+
+Using the dual basis to the $u_\rho,e_2,\cdots, e_n$ of $N$ we can write $m=\sum \ps{m,e_i}e_i^\vee$ (we set $e_1=u_\rho$), so
+\[\chi^m=\prod \chi^{\ps{m,e_i}e_i^\vee}=x_1^{\ps{m,u_\rho}}\cdot x_2^{\ps{m,e_2}}\cdots x_n^{\ps{m,e_n}}.\]
+\end{proof}
+
+
+\begin{proposition}[]
+We have that
+\[\div(\chi^m)=\sum_{\rho\in\Sigma(1)}\ps{m,u_\rho}D_\rho\]
+\end{proposition}
+\begin{proof}
+The irreducible components of $X_\Sigma\bs T_N$ are exactly the $D_\rho$ by the orbit-cone correspondence. Moreover, $\chi^m$ is defined and not zero on $T_N$ so it follows that $\Supp(\div(\chi^m))\subseteq X_\Sigma\bs T_N$. By the previous computation we are done.
+\end{proof}
+
+
+
+\begin{remark}
+Note that $D_\rho$ are torus invariant and so every linear combination $\sum a_\rho D_\rho$ is torus-invariant (with the obvious induced action).
+
+These are actually ALL the torus-invariant divisors (easy from the orbit-cone correspondence).
+\end{remark}
+
+
+\begin{notation}
+We use $\Div_{T_N}(X_\Sigma)$ to denote the subgroup of $\Div(X_\Sigma)$ given by the torus-invariant divisors.
+\end{notation}
+
+
+\begin{proposition}[]\label{PrExactSequenceOfTorusInvariantDivisors}
+There is an exact sequence
+\[M\to \Div_{T_N}(X_\Sigma)\to \Cl(X_\Sigma)\to 0\]
+where the first map is $m\mapsto \div(\chi^m)$. In particular every divisor on $X_\Sigma$ is linearly equivalent to a torus-invariant one.
+
+Moreover, the first map is injective if and only if $\cpa{u_\rho\mid \rho\in \Sigma(1)}$ spans $N_\R$.
+\end{proposition}
+\begin{proof}
+We start from the localization sequence induced by the inclusion $T_N\subseteq X_\Sigma$ (we are using the fact that the $D_\rho$ generate the invariant divisors)
+\[\Div_{T_N}(X_\Sigma)\to \Cl(X_\Sigma)\to \Cl(T_N)\to 0\]
+Since $k[x_1^{\pm},\cdots, x_n^{\pm}]$ is a UFD we have that $\Cl(T_N)=0$.
+
+The composite $M\to \Div_{T_N}(X_\Sigma)\to \Cl(X_\Sigma)$ is clearly 0 because the images of the first map are principal.
+
+Suppose $D\in \Div_{T_N}(X_\Sigma)$ is such that $D=\div(f)=\sum a_\rho D_\rho$. Then $\div(f)\res{T_N}=0$, so $f\in \Oc_{T_N}^\ast$, that is, $f=c\chi^m$. So $\div(f)=\div(c\chi^m)=\div(\chi^m)$, proving exactness.
+
+
+Now, $\div(\chi^m)=0$ in $\Div_{T_N}(X_\Sigma)$ means that $\ps{m,u_\rho}=0$ for all $\rho\in \Sigma(1)$. This is equivalent to $m=0$ exactly when the $\cpa{u_\rho}$ span $N_\R$.
+\end{proof}
+
+\begin{remark}
+The condition ``$\cpa{u_\rho}$ spans $N_\R$" corresponds geometrically to the fact that $X_\Sigma$ has no ``torus factors", that is, $X_\Sigma$ is not equivariantly isomorphic to some $\G_m^k\times X_{\Sigma'}$.
+\end{remark}
+
+\begin{proposition}[]
+The following are equivalent
+\begin{enumerate}
+\item $X_\Sigma$ has a torus factor
+\item there exists a non-constant morphism $X_\Sigma\to \G_m$
+\item The $\cpa{u_\rho\mid \rho\in \Sigma(1)}$ do not span $N_\R$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We give the implications
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] If $X_\Sigma\cong \G_m^k\times X_{\Sigma'}$ we can take any projection on one of the first $k$ factors. 
+\item[$\boxed{2.\implies3.}$] If $f:X_\Sigma\to \G_m$ is non-constant then the restriction $f\res{T_N}:T_N\to \G_m$ is a non-constant morphism, i.e. a non-constant invertible element of $\Oc_{T_N}(T_N)$, so $f\res{T_N}=c\chi^m$ for $c\in k^\ast$ and $m\in M\nz$.
+
+By multiplying by $c\ii$ we can assume that $c=1$, so $f:X_\Sigma\to \G_m$ is now a toric morphism, since it restricts to a homomorphism on the tori. These are induced by a non-constant homomorphism $\vp:N\to \Z$ which is compatible with the fans (\ref{ThCharacterizationOfToricMorphisms}). The fan of $\G_m$ is the origin inside $\R=\Z_\R$, so $\vp(\abs{\Sigma})=0$ and so $\cpa{u_\rho\mid \rho\in \Sigma(1)}$ does not span $N_\R$, otherwise $\vp:N\to \Z$ would have to be the $0$ map.
+\item[$\boxed{3.\implies1.}$] Basically already seen. You get a proper sublattice of $N$ by taking the $\Z$-span of $\cpa{u_\rho}$ and now so complete to a basis.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+
+We can now compute $\Cl(X_\Sigma)$ algorithmically:
+\begin{enumerate}
+\item Fix a basis $e_1,\cdots, e_n$ for $M$
+\item Fix minimal ray generators $u_1,\cdots, u_r$ which form a basis for $\Div_{T_N}(X_\Sigma)$ ******
+\item If $\cpa{\rho_1,\cdots,}$
+\item % https://q.uiver.app/#q=WzAsNCxbMCwwLCJNIl0sWzEsMCwiXFxEaXZfe1RfTn0oWF9cXFNpZ21hKSJdLFswLDEsIlxcWl5uIl0sWzEsMSwiXFxaXnIiXSxbMCwxXSxbMiwzXSxbMCwyLCJcXGNvbmciLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJcXGNvbmciLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	M & {\Div_{T_N}(X_\Sigma)} \\
+	{\Z^n} & {\Z^r}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\cong"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
+	\arrow["\cong"{marking, allow upside down}, draw=none, from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+where the second isomorphism is using the basis $D_{\rho}$. This map corresponds to the matrix
+\[\mat{\ps{e_1,u_1} &\cdots &\ps{e_n,u_1}\\\vdots&\ddots&\vdots\\\ps{e_1,u_r}&\cdots&\ps{e_n,u_r}}\]
+and you compute the cokernel of this matrix using the smith normal form.
+\end{enumerate}
+
+
+
+\begin{remark}
+Using this description, you can show that $\Cl(X_\Sigma\times X_{\Sigma'})=\Cl(X_\Sigma)\oplus\Cl(X_{\Sigma'})$, which is NOT true for general normal varieties.
+\end{remark}
+
+
+
+
+\section{Cartier divisors on toric varieties}
+
+To get $\Pic(X_\Sigma)$ we want to consider $\CDiv_{T_N}(X_\Sigma)\subseteq \Div_{T_N}(X_\Sigma)$. Note that $M\to \Div_{T_N}(X_\Sigma)$ has image contained in $\CDiv_{T_N}(X_\Sigma)$.
+
+
+\begin{proposition}[]\label{PrExactSequenceOfTorusInvariantCartierDivisors}
+We have an exact sequence
+\[M\to \CDiv_{T_N}(X_\Sigma)\to \Pic(X_\Sigma)\to 0\]
+This is also exact on the left exactly when $X_\Sigma$ has no torus factors
+\end{proposition}
+
+
+\subsection{Torus invariant Cartier divisors: affine case}
+What is $\CDiv_{T_N}(X_\Sigma)$? For Weil divisors we had $\Div_{T_N}(X_\Sigma)=\bigoplus \Z D_\rho$.
+
+\begin{proposition}[]\label{PrInvariantCartierDivisorsOnAffineArePrincipalAndComeFromCharacters}
+Let $\sigma\subseteq N_\R$ be a strongly convex cone. Then every $T_N$-invariant Cartier divisor on $U_\sigma$ is the divisor of a character, so $\Pic(U_\sigma)=0$.
+\end{proposition}
+\begin{proof}
+Let $R=k[S_\sigma]$. Suppose that $D=\sum a_\rho D_\rho$ is $T_N$-invariant and Cartier. Suppose $a_\rho\neq 0$ for the $\rho$ which appear in the sum.
+
+Suppose $D$ is effective. Note that the $D_\rho$ intersect non-trivially: $\Oc(\sigma)\subseteq \ol{\Oc(\rho)}=D_\rho$, so $\Oc(\sigma)\subseteq \bigcap D_\rho$. Pick any point $p\in \Oc(\sigma)$. Since $D$ is Cartier, there exists $U\subseteq U_\sigma$ open such that $p\in U$ and $D\res U=\div(f)\res U$ for some $f\in k(U_\sigma)^\ast$. We can assume $U=(U_\sigma)_h=\Spec R_h$ for some $h\in R$ because principal open sets form a basis. Since $D$ is effective, $\div(f)\res U\geq 0$, so $f\in R_h$. If $f=g/h^k$, since $h\in R_h^\ast$ and multiplying by $h$ doesn't change $\div(f)\res U$, we can just assume $f=g\in R$.
+
+Consider now\footnote{this set is $\Gamma(\Oc(-D))$} $I=\cpa{g\in k(U_\sigma)\mid g=0\text{ or }\div g\geq D}$. Since $D\geq 0$ we have $\div g\geq 0$ so $I$ is an ideal of $R$. This ideal is $T_N$-invariant because $D$ is. Thherefore $I$ is a subrepresentation of $R$ under the action of $T_N$, meaning that 
+\[I=\bigoplus_{\div (t^m)\geq D} kt^m\]
+Note that $f\in I$ because
+\[\div f=\sum v_\rho(f)D_\rho+\under{\geq 0\text{ because }f\in R}{\sum_{E\neq D_\rho}v_E(f)E}\geq \sum v_\rho(f)D_\rho+0=D\]
+where the last equality holds because of our choice for $U$.
+
+Thus $f=\sum a_{i}t^{m_i}$ with $\div(t^{m_i})\geq D$ for all $i$. On $U$, 
+\[\div(t^{m_i})\res U\geq D\res U=\div(f)\res U\implies \div(t^{m_i}/f)\res U\geq 0\implies t^{m_i}/f\in \Oc(U)\]
+So we can write
+\[1=\sum a_i t^{m_i}/f\]
+and the fact that $t^{m_i}/f\in \Oc(U)$ we can evaluate that equality at $p\in U$ to get
+\[1=\sum a_i t^{m_i}(p)/f(p)\]
+so $t^{m_i}/f(p) \neq 0$ for some $i$. Let $V\subseteq U$ be an open set where $t^{m_i}/f$ is never $0$ and $p\in V$. We get
+\[\div(t^{m_i}/f)\res V=0\implies \div(t^{m_i})\res V=\div (f)\res V=D\res V\]
+Since $V$ intersects every $D_\rho$ non-trivially we get that $\div(t^{m_i})=D$ on $U_\sigma$.
+
+\bigskip
+
+Consider now a general invariant Cartier divisor $D$. Since $\sigma$ is strongly convex, there exists some $m\in M$ such that $\ps{m,u_\rho}>0$ for all $\rho\in \sigma(1)$ (because the origin is a face of $\sigma$). This implies that $D'=D+\div(t^{km})$ for $k$ big enough we get an effective invariant Cartier divisor. By the previous case $D'=\div(t^{m_i})$ and so $D=\div(t^{m_i-km})$.
+\end{proof}
+
+
+
+\begin{example}
+If $\sigma=\Cone((d,-1),(0,1))\subseteq \R^2$ we have that $\Cl(U_\sigma)\cong \znz d$ but $\Pic(U_\sigma)=0$, so the generator of the class group corresponds to a Weil divisor which is not Cartier.
+
+If we take out the torus fixed point $\gamma_\sigma\in U_\sigma$, $X=U_\sigma\bs\cpa{\gamma_\sigma}$ (we remove the maximal cone). Now $X$ is a smooth toric variety and in this case $\Pic(X)=\Cl(X)$. We left the rays untouched so $\Cl(X)=\Cl(U_\sigma)$, so we suddenly got nontrivial line bundles by removing a point!
+\end{example}
+
+\begin{remark}
+You can show that if $\Sigma$ contains a cone of dimension equal to that of the lattice then $\Pic(X_\Sigma)$ is torsion free.
+\end{remark}
+\begin{proof}[Sketch]
+Suppose $\Pic(X_\Sigma)$ has torsion and take a representative in $\CDiv_{T_N(X_\Sigma)}$, that is, take an invariant Cartier Divisor $D$ such that $kD=\div(t^m)$. We have to show that $D=\div(t^{m'})$.
+
+If $\sigma$ is a cone of maximal dimension then $\cpa{u_\rho\mid \rho\in \sigma(1)}$ spans $N_\R$. $D\res{U_\sigma}$ is the divisor of a character $t^{m'}$ by (\ref{PrInvariantCartierDivisorsOnAffineArePrincipalAndComeFromCharacters}).
+
+Since $\div(t^m)\res{U_\sigma}=\div(t^{km'})\res{U_\sigma}$ then $m=km'$ and so we get $D=\div(t^{m'})$ on $X_\Sigma$ because the rays of $\sigma$ span (details to fill in).
+\end{proof}
+
+
+\begin{proposition}[]\label{PrSmoothnessOfToricVarietyIsEquivalentToPicardBeingTheClassGroup}
+$X_\Sigma$ is smooth if and only if $\Pic(X_\Sigma)=\Cl(X_\Sigma)$
+\end{proposition}
+\begin{proof}
+The first implication is always true. Suppose $\Pic(X_\Sigma)=\Cl(X_\Sigma)$. We want to show that $\sigma\in \Sigma$ is smooth.
+
+Since $\Cl(X_\Sigma)\to \Cl(U_\sigma)$ is surjective, every divisor on $U_\sigma$ is Cartier because the restriction of a Cartier divisor is Cartier and $\Cl(X_\Sigma)=\Pic(X_\Sigma)$. Since $\Pic(U_\sigma)=0$ it follows that $\Cl(U_\sigma)=0$, thus $M\to \Div_{T_N}(U_\sigma)$ is surjective.
+
+If $\sigma(1)=\cpa{\rho_1,\cdots, \rho_r}$ then the map $M\to \Div_{T_N}(U_\sigma)$ in coordinate is
+\[\funcDef{M}{\Z^r}{m}{(\ps{m,u_{\rho_i}})}\]
+This map is dual to
+\[\phi:\funcDef{\Z^r}{N}{e_i}{u_{\rho_i}}\]
+Since $\phi^\vee$ is surjective it follows that (using a little homological algebra) $\phi$ is injective and that $\coker\phi$ is torsion-free. This implies that $\cpa{u_{\rho_i}}$ can be completed to a $\Z$-basis of $N$ and so $\sigma$ is a smooth cone.
+\end{proof}
+
+
+\begin{remark}
+One can also show that $X_\Sigma$ is simplicial (every cone in $\Sigma$ is simplicial, that is, the minimal ray generators are $\R$-linearly independent) if and only if every Weil divisor is $\Q$-Cartier, that is, it has a positive multiple which is Cartier, that is, the index $[\Cl(X_\Sigma):\Pic(X_\Sigma)]$ is finite. 
+\end{remark}
+
+
+
+\subsection{Torus invariant Cartier divisors}
+
+Recall that if $D\in \Div(X)$ is Cartier then there exists an open cover $\cpa{U_i}$ of $X$ and $f_i\in k(X)$ for all $i$ such that $D\res{U_i}=\div(f_i)\res{U_i}$. We may call $\cpa{(U_i,f_i)}$ a \textit{Cartier data} for $D$.
+
+\begin{proposition}[]\label{}
+Let $D\in \Div_{T_N}(X_\Sigma)$ and let us write $D=\sum a_\rho D_\rho$. The following are equivalent
+\begin{enumerate}
+\item $D$ is Cartier
+\item $D$ is principal on $U_\sigma$ for all $\sigma\in \Sigma$.
+\item For all $\sigma\in \Sigma$ there exists $m_\sigma\in M$ such that\footnote{i.e. $\sum a_\rho D_\rho\cap U_\sigma=D\res{U_\sigma}=\div(t^{-m_\sigma})\res{U_\sigma}$ and $D_\rho\cap U_\sigma\neq \emptyset$ if and only if $\rho\leq \sigma$.} $\ps{m_\sigma,u_\rho}=-a_\rho$ for all $\rho\in \sigma(1)$.
+\item for all\footnote{maximal cones in $\Sigma$ by inclusion. They may be of different dimension.} $\sigma\in \Sigma_{max}$ there exists $m_\sigma\in M$ such that $\ps{m_\sigma,u_\rho}=-a_\rho$ for all $\rho\in \sigma(1)$.
+\end{enumerate}
+Moreover, if $D$ is Cartier, then the $m_\sigma$ in proposition $4$ are unique in the quotient $M/M(\sigma)$ for $M(\sigma)=\sigma^\perp\cap M$.
+
+In particular, if $\tau\leq \sigma$ then $m_\tau\equiv m_\sigma$ modulo $M(\tau)$.
+\end{proposition}
+\begin{proof}
+The only new part for the equivalences is $4.$. $3.$ clearly implies $4.$. The fact that $4$ implies the others follows from the fact that if $\sigma\leq \sigma'$ then $m_{\sigma'}$ is a valid choice for $m_\sigma$ in proposition 3.
+
+Now we prove the uniqueness. If $m_\sigma$ and $m_{\sigma'}$ are two elements that satisfy the condition, then $\ps{m_\sigma,u_\rho}=-a_\rho=\ps{m_{\sigma'},u_\rho}$ for all $\rho\in \sigma(1)$. Thus
+\[\ps{m_\sigma-m_{\sigma'},u_\rho}=0\implies \ps{m_\sigma-m_{\sigma'},u}=0\ \forall u\in \sigma.\]
+\end{proof}
+
+
+\begin{notation}
+We call $\cpa{m_\sigma}_{\sigma\in \Sigma}$ the \textit{Cartier data} for the divisor $D$.
+\end{notation}
+
+\begin{remark}
+The minus sign in $\ps{m_\sigma,u_\rho}=-a_\rho$ is a convention. It matches the convention used when writing the presentations for polytopes $\ps{m,u_F}\geq -a_F$.
+
+This choice boils down to the fact that the $\Oc_X$-module associated to a divisor $D$ is defined as
+\[\Oc_X(D)(U)=\cpa{f\in k(X)^\ast\mid (\div f+D)\res U\geq 0}\cup\cpa{0}.\]
+\end{remark}
+
+
+
+Note that if $\tau\leq \sigma$ then we have $\sigma^\perp\cap M\subseteq \tau^\perp\cap M$ and this induces a map $M/M(\sigma)\to M/M(\tau)$. This maps $[m_\sigma]$ to $[m_\tau]$.
+
+The groups $\cpa{M/M(\sigma)}_{\sigma\in \Sigma}$ form an inverse system ordered by $\Sigma$ and the face-relation. It turns out that
+\[\CDiv_{T_N}(X_\Sigma)\cong \varprojlim_{\sigma\in \Sigma}M/M(\sigma)\]
+This just means that Cartier divisors correspond exactly to compatible collections of $\cpa{[m_\sigma]}_{\sigma\in \Sigma}$.
+
+
+
+
+
+
+
+
+
+

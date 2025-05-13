@@ -333,38 +333,488 @@ These embeddings are compatible: if $\tau\leq \sigma\leq \sigma'$ then
 \end{tikzcd}\]
 commutes (check on the algebras).
 
-So these maps glue to a closed embedding $V(\tau)\to \bigcup_{\tau\leq \sigma}U_\sigma\subseteq X_{\Sigma}$, that is, we now only know that the first of the two immersions is closed.
+So these maps glue to a closed embedding $V(\tau)\to \bigcup_{\tau\leq \sigma}U_\sigma\subseteq X_{\Sigma}$, that is, we now only know that the first of the two immersions is closed. To finish we just need to show that if $V(\tau)\cap U_{\sigma'}\neq \emptyset$ then $\tau\leq \sigma'$.
 
-We will prove that $V(\tau)\cap U_{\sigma'}=\emptyset$ if $\tau\not\leq \sigma'$, so that $V(\tau)$ is actually closed in $X_\Sigma$.
+\begin{lemma}[]
+If $\tau,\sigma$ are cones such that $\tau\subseteq \sigma$ then $\tau$ is a face of $\sigma$ if and only if for all $v,w\in \sigma$ we have $v+w\in \tau\implies v,w\in\tau$.
+\end{lemma}
 
+\begin{corollary}[]\label{CorFaceContainedInAFaceIsAFaceOfTheFace}
+If $\tau,\tau'$ are faces of a cone $\sigma$ such that $\tau\subseteq \tau'$ then $\tau\leq \tau'$.
+\end{corollary}
 
+\begin{proposition}[]
+If $V(\tau)\cap U_{\sigma'}\neq \emptyset$ then $\tau\leq \sigma'$.
+\end{proposition}
+\begin{proof}
+Assume $\gamma\in V(\tau)\cap U_{\sigma'}$. From what we have seen, there exists $\sigma\in \Sigma$ such that $\tau\leq \sigma$ and $\gamma\in U_\sigma$, so 
+\[\gamma\in V(\tau)\cap U_\sigma\cap U_{\sigma'}=U_\sigma(\tau)\cap U_{\sigma'}=\Spec k[\sigma^\vee\cap \tau^\perp\cap M]\cap U_{\sigma'}.\]
+The inclusion $U_\sigma(\tau)\subseteq U_\sigma$ at the level of points corresponds to extension by 0 (if we view the points as monoid homomorphisms to $(k,\cdot)$).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Since $U_\sigma(\tau)\subseteq U_\sigma$, $U_\sigma(\tau)\cap U_{\sigma'}=U_\sigma(\tau)\cap U_{\sigma\cap \sigma'}$ and $U_{\sigma\cap\sigma'}\subseteq U_\sigma$ corresponds to the points $\al:\sigma^\vee\cap M\to k$ such that $\al(m)\in k^\ast$ for $m\in M$ such that $H_m\cap \sigma=\sigma\cap \sigma'$.
 
 
+Since $\gamma\in U_\sigma(\tau)\cap U_{\sigma\cap \sigma'}$ it must be the case that $m\in \tau^\perp$ because outside of $\tau^\perp$ we extend by $0$ and $\al(m)$ has to be invertible. This means that $\ps{m,n}=0$ for $n\in \tau$ and since $H_m\cap \sigma=\sigma\cap \sigma'$ we have $\tau\subseteq \sigma\cap \sigma'$. By corollary (\ref{CorFaceContainedInAFaceIsAFaceOfTheFace}), we have $\tau\leq \sigma\cap \sigma'$ and since $\sigma\cap\sigma'\leq \sigma'$ we have $\tau\leq \sigma'$.
+\end{proof}
+
+
+\begin{remark}
+These maps are $T_N$-equivariant, where the action of $T_N$ on $\Oc(\sigma)$ and $V(\sigma)$ are induced by the surjection $T_N\onto\Oc(\sigma)$ corresponding to $M(\sigma)\subseteq M$.
+\end{remark}
+\begin{proof}
+If $\tau\leq \sigma$ we need to check that the diagram commutes
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJUX05cXHRpbWVzIFVfXFxzaWdtYShcXHRhdSkiXSxbMCwxLCJUX05cXHRpbWVzIFVfXFxzaWdtYSJdLFsxLDAsIlxcT2MoXFxzaWdtYSlcXHRpbWVzIFVfXFxzaWdtYShcXHRhdSkiXSxbMiwwLCJVX1xcc2lnbWEoXFx0YXUpIl0sWzIsMSwiVV9cXHNpZ21hIl0sWzAsMl0sWzIsM10sWzMsNF0sWzAsMV0sWzEsNF1d
+\[\begin{tikzcd}
+	{T_N\times U_\sigma(\tau)} & {\Oc(\sigma)\times U_\sigma(\tau)} & {U_\sigma(\tau)} \\
+	{T_N\times U_\sigma} && {U_\sigma}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+\end{tikzcd}\]
+and this is true after looking at the coordinate rings (exercise).
+\end{proof}
+
+\begin{remark}
+This implies that $\Oc(\sigma)\subseteq X_\Sigma$ is an orbit for the torus action and that $V(\sigma)$ is its closure (because it is closed and $\Oc(\sigma)$ is its dense torus when seen as a toric variety).
+\end{remark}
+
+
+If $\tau\leq \tau'$ then we have a closed embedding $V(\tau')\inj V(\tau)$ making the diagram commute
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWKFxcdGF1JykiXSxbMiwwLCJWKFxcdGF1KSJdLFsxLDEsIlhfe1xcU2lnbWF9Il0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+\[\begin{tikzcd}
+	{V(\tau')} && {V(\tau)} \\
+	& {X_{\Sigma}}
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=2-2]
+	\arrow[hook, from=1-3, to=2-2]
+\end{tikzcd}\]
+
+This can be described locally as: for $\tau'\leq \sigma$ we have $U_\sigma(\tau')\inj U_\sigma(\tau)$ closed immersion described alegbraically by
+\[\funcDef{k[\sigma^\vee\cap \tau^\perp\cap M]}{k[\sigma^\vee\cap (\tau')^\perp\cap M]}{t^m}{\begin{cases}
+	t^m &\text{if }m\in (\tau')^\perp\\
+	0 &\text{otherwise}
+\end{cases}}\]
+This is compatible with the embedding in $U_\sigma$.
+
+
+\begin{remark}
+This embedding $V(\tau')\subseteq V(\tau)$ can also be seen as the embedding $V(\tau')\subseteq X_{\Star(\tau)}$.
+\end{remark}
+
+
+
+This gives a map
+\[\funcDef{\cpa{\text{cones in }\Sigma}}{\cpa{\text{torus orbits in }X_{\Sigma}}}{\sigma}{\Oc(\sigma)}\]
+(or equivalently we may take $\cpa{\text{orbit closures}}$ and assign $\sigma\mapsto V(\sigma)$).
+
+\begin{remark}
+The map is injective because of the fact (exercise) that $\gamma_\sigma\in \Oc(\sigma)$ and $\gamma_\sigma\notin \Oc(\sigma')$ for $\sigma'\neq \sigma$. 
+
+This also shows that $\Oc(\sigma)=T_N\cdot \gamma_\sigma$.
+\end{remark}
+
+Recall that $\dim \Oc(\sigma)=\dim T_N-\dim \sigma$.
+
+\begin{proposition}[]\label{PrOrbit-ConeCorrespondence}
+We have
+\begin{enumerate}
+\item $U_\sigma=\bigcup_{\tau\leq \sigma}\Oc(\tau)$, so in particular every torus orbit is one of the $\Oc(\sigma)$.
+\item $\Oc(\sigma)=V(\sigma)\bs \bigcup_{\sigma<\tau}V(\tau)$.
+\item $V(\tau)=\bigcup_{\tau\leq \sigma}\Oc(\sigma)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We prove the three propositions
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Pick $\gamma\in U_\sigma$, which we see as a homomorphism $\gamma:\sigma^\vee\cap M\to k$. Look at $\gamma\ii(k^\ast)\subseteq \sigma^\vee\cap M$ and note that the cone generated by this submonoid is a face of $\sigma^\vee$ (follows from the fact that if $m,m'\in \sigma^\vee\cap M$ are such that $m+m'\in \gamma\ii(k^\ast)$ then $\gamma(m)\gamma(m')\in k^\ast\implies \gamma(m),\gamma(m')\in k^\ast$, that is, $m,m'\in \gamma\ii(k^\ast)$). By taking the dual (as a face, not as a cone) of this face we get $\gamma\ii(k^\ast)=\sigma^\vee\cap \tau^\perp\cap M$ for some $\tau\leq \sigma$. This means exactly that $\gamma\in \Oc(\tau)=\Spec k[\tau^\perp\cap M]$.
+\item Changing notation so that $N=N(\sigma)$, we reduce to proving that
+\[T_N=X_\Sigma\bs \bigcup_{\tau\neq 0}V(\tau)\]
+Intersecting with $U_\sigma$ for some $\sigma\in \Sigma$ this becomes
+\[T_N=U_\sigma\bs \bigcup_{\tau\neq 0}V(\tau)\cap U_\sigma=U_\sigma\bs \bigcup_{\tau\neq 0}U_\sigma(\tau)\]
+and thus follows from $1.$ when applied to $U_\sigma$:
+\[U_\sigma=\coprod_{\tau\leq \sigma}\Oc(\tau)=T_N\sqcup\coprod_{0\neq \tau\leq \sigma}\Oc(\tau)\subseteq T_N\sqcup\bigcup_{0\neq \tau\leq \sigma}U_\sigma(\tau).\]
+\item Follows from $2.$ by induction on $n-\dim\tau$.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+\begin{example}
+Let $\Sigma$ be the fan of $\A^2$, that is
+\[\Sigma=\cpa{\sigma,\tau_1,\tau_2, \cpa0}\]
+for
+\[\sigma=\Cone(e_1,e_2)\quad\text{and}\quad \tau_i=\Cone(e_i).\]
+We get
+\[\A^2=U_\sigma=\Oc(\sigma)\sqcup\Oc(\tau_1)\sqcup\Oc(\tau_2)\sqcup\Oc(0)=\cpa{(0,0)}\sqcup \cpa{(0,y)\mid y\neq 0}\sqcup \cpa{(x,0)\mid x\neq 0}\sqcup \G_m^2.\]
+Indeed: $N(\tau_2)=N/N_{\tau_2}=\Z$ and
+\[V(\tau_2)=X_{\Star(\tau_2)}=\A^1=\Spec k[t]\inj U_\sigma=\Spec k[x,y]\]
+let $\sigma'=\tau_1/N_{\tau_2}$
+
+$(\sigma')^\vee\tau_2^\perp \cap M=\ps{e_1}\cap (\sigma')^\vee\cong \N$. So $V(\tau_2)\subseteq \A^2$ is the $x$-axis.......
+\end{example}
+
+
+
+In the projective case, i.e. for $X_P$ with $P$ full-dimensional lattice polytope, for a face $Q\leq P$ there is a cone $\sigma_Q\in \Sigma_P$, so the orbit closures on $X_P$ are exactly the $V(\sigma_Q)$ for faces $Q\leq P$. This correspondence becomes more ``visual".
+
+For example, note that $Q\mapsto V(\sigma_Q)\subseteq X_P$ preserves dimensions.
+
+
+\begin{proposition}[]
+$V(\sigma_Q)\cong X_Q$ as toric varieties.
+\end{proposition}
+
+\begin{example}
+$\Pj^2$ comes from $\Delta_2$ for example. The edges of $\Delta_2$ correspond to the coordinate hyperplanes in $\Pj^2$, the intersection points are the three origins ($[1,0,0]$, $[0,1,0]$, $[0,0,1]$). The interior corresponds to the torus.
+\end{example}
+
+\begin{remark}
+If $k=\C$ there is a continuous (for the euclidian topology) function (called moment/momentum map)
+\[\C\Pj^2\to \Delta_2\]
+which is a ``degenerate torus fibration", i.e. the fibers of points in the interior of $\Delta_2$ the fiber is a torus, over an edge the fibers are circles and over the vertices they are points.
+
+
+In the case of $\C\Pj^1$ the fibers over points in $(0,1)$ are circles and over the extremes $\cpa{0,1}$ you get points.
+\end{remark}
+
+
+\section{Rough sketch that every toric variety comes from a fan}
+
+\begin{theorem}[Sumihiro]\label{ThSumihiros}
+If $T_N\acts X$ with $X$ normal and separated then there exists $\cpa{U_i}$ open affine inveriant cover of $X$. 
+\end{theorem}
+
+Every such $U_i$ is an affine normal $T_N$-toric variety $U_i\cong U_{\sigma_i}$ for $\sigma_i\subseteq N_\R$ strongly convex rational cone. Then one shows
+\begin{itemize}
+	\item $U_i\cap U_j$ can be identified with $U_{\sigma_i\cap \sigma_j}$
+	\item $\sigma_i\cap \sigma_j$ is a face of both (this follows from the general fact that if $\tau\subseteq \sigma$ and $U_\tau\to U_\sigma$ is an open embedding (induced by $\sigma^\vee\to \tau^\vee$) then it follows that $\tau\leq\sigma$).
+	\item $X\cong X_\Sigma$ where $\Sigma$ is the fan consisting of the $\sigma_i$ and their faces.
+\end{itemize}
+
+
+
+
+\section{Properness of toric varieties}
+
+\subsection{Properness and valuative criterion}
+Note that in algebraic geometry, classical compactness is almost always verified because Zariski open sets are very big. Properness is the correct analogue.
+
+\begin{definition}[]
+An abstract variety $X$ is \textbf{proper} if it is separated and for all $Y$ abstract variety the projection $X\times Y\to Y$ is closed.
+\end{definition}
+
+
+\begin{example}
+$\Pj^n$ is proper, $Z\subseteq \Pj^n$ closed is also proper.
+\end{example}
+
+\begin{example}
+$\A^n$ is not proper. For example $\A^1\times \A^1\to \A^1$ is not closed ($V(xy-1)$ goes to $\G_m$, which is not closed in $\A^1$).
+\end{example}
+
+\begin{remark}
+Sometimes proper is called complete. The idea is that $X$ does not have any ``punctures", i.e. limits of points on curves always exist.
+\end{remark}
+
+\begin{remark}
+$X$ is both proper and affine only if $X$ composed of a finite amount of points.
+\end{remark}
+
+\begin{definition}[]
+A morphism $f:X\to Y$ of varieties is \textbf{proper} if it is universally closed\footnote{in general you also impose separated of finite type but these conditions are automatic from our definition of abstract varieties}, i.e. $f$ is closed and for all $Z\to Y$ morphism the projection $X\times_Y Z\to Z$ is closed.
+\end{definition}
+
+
+\begin{fact}[Valuative criterion for properness]\label{FctValuativeCriterionForProperness}
+If $X,Y$ are varieties (finite type schemes over $k$) and $f:X\to Y$ is a morphism, then $f$ is proper if and only if for all $R$ DVR over $k$ with fraction field $\K$, in any diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXFNwZWMgUiJdLFsxLDEsIlkiXSxbMSwwLCJYIl0sWzAsMCwiXFxTcGVjIFxcSyJdLFszLDJdLFszLDAsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMV0sWzAsMV0sWzAsMiwiIiwxLHsiY29sb3VyIjpbMzU4LDEwMCw0N10sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\Spec \K} & X \\
+	{\Spec R} & Y
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[color={rgb,255:red,240;green,0;blue,8}, dashed, from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+there is a unique dotted arrow that makes everything commute.
+\end{fact}
+
+\begin{example}
+Let $R=k[[t]]$. The fraction field is $\K=k[[t]][t\ii]=k((x))$. $\Spec R$ has two elements, the ideal $(0)$ and the maximal ideal $(t)$. 
+
+$\Spec \K\to \Spec R$ in an embedding of the generic point in $\Spec R$ (because $K=R_{(0)}$). The generic point is like a ``fuzzy neighborhood of a curve" or ``a piece of a curve". A diagram like before means that we have some piece of a curve in $X$ and we have a curve plus an actual point in $Y$, then the criterion says that $f$ is proper when we can find a unique ``limit point" of the piece of curve in $X$ which commutes with the projections to $Y$.
+
+If we take $Y=\Spec k$, we see that properness of $X$ corresponds to some kind of existence and uniqueness of limits for curves in $X$.
+\end{example}
+
+
+\begin{remark}
+You could refrase the valuative criterion using smooth projective curves instead of $\Spec R$ and a non-empty open $U\subseteq C$ instead of $\Spec \K$, but this form is much more convenient.
+\end{remark}
+
+
+\begin{example}
+Let's check that $\Pj^n\to \Spec k$ is proper using the valuative criterion. Let $R$ be a DVR with uniformizing parameter $\pi$ and fraction field $\K$. Suppose we have a diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXFNwZWMgUiJdLFsxLDEsIlxcU3BlYyBrIl0sWzEsMCwiXFxQal5uIl0sWzAsMCwiXFxTcGVjIFxcSyJdLFszLDJdLFszLDAsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMV0sWzAsMV1d
+\[\begin{tikzcd}
+	{\Spec \K} & {\Pj^n} \\
+	{\Spec R} & {\Spec k}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+The morphism $\Spec \K\to \Pj^n$ corresponds to a closed point $\Pj^n(\K)$, that is, $[x_0,\cdots, x_n]$ with $x_i\in \K$ and (say) $x_0\neq 0$. Since $R$ is a DVR, the $x_i$ have a valuation $v(x_i)$. Let $k=\min\cpa{v(x_i)\mid 0\leq i\leq n,\ x_i\neq 0}$. Note that
+\[[x_0,\cdots, x_n]=[\pi^{-k}x_0,\cdots, \pi^{-k}x_n]\]
+and now by construction the valuation of the coordinates in the second form lie in $R$. Moreover, there is a $j$ such that $v(\pi^{-k}x_j)=0$, that is, $\pi^{-k}x_j\in R^\ast$, so the morphism $\Spec R\to \A^n\cong U_j\subseteq \Pj^n$ given by
+\[\funcDef{k[y_1,\cdots, y_n]}{R}{y_i}{\frac{\pi^{-k}x_i}{\pi^{-k}x_j}}\]
+provides a lift, which is also unique, showing the hypothesis of the valuative criterion.
+\end{example}
+
+
+Using the valuative criterion, we will show that $X_\Sigma$ is proper if and only if $\Sigma$ is a complete fan.
+
+
+\subsection{Toric morphisms}
+
+Let $N,N'$ be two lattices with fans $\Sigma$ in $N_\R$ and $\Sigma'$ in $N'_\R$.
+
+Given a group homomorphism $\vp:N\to N'$ which is compatible with the fans, i.e. for all $\sigma\in \Sigma$ there exists $\sigma'\in \Sigma'$ such that $\vp_\R(\sigma)\subseteq \sigma'$ for $\vp_\R=\vp\otimes id_\R:N_\R\to N'_\R$.
+
+
+In this situation we can construct an induced morphism $\vp_\ast:X_\Sigma\to X_{\Sigma'}$.
+
+If $\sigma\in \Sigma$ and $\sigma'\in \Sigma'$ such that $\vp_\R(\sigma)\subseteq \sigma'$ then we have $\vp_\R\res{\sigma}:\sigma\to \sigma'$ and this defines a morphism of monoids $(\sigma')^\vee\cap M'\to \sigma^\vee\cap M$, which gives a morphism $U_\sigma\to U_\sigma'$.
+
+These morphisms are compatible (exercise) so they glue to a global morphism $X_\Sigma\to X_{\Sigma'}$.
+
+
+\begin{definition}[]
+A morphism defined as above is called a \textbf{toric morphism}.
+\end{definition}
+
+
+\begin{remark}
+Any toric morphism $f=\vp_\ast:X_\Sigma\to X_{\Sigma'}$ is\footnote{the map $T_N\to T_{N'}$ is defined by starting from $\vp:N\to N'$, getting $\vp^\vee:M'\to M$ and then taking the Cartier duals $T_N=D(M)\to D(M')=T_{N'}$} $(T_N\to T_{N'})$-equivariant, that is, we have a commutative diagram
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJYX1xcU2lnbWEiXSxbMSwxLCJYX3tcXFNpZ21hJ30iXSxbMSwwLCJUX3tOJ31cXHRpbWVzIFhfe1xcU2lnbWEnfSJdLFswLDAsIlRfTlxcdGltZXMgWF97XFxTaWdtYX0iXSxbMywyXSxbMywwXSxbMiwxXSxbMCwxXV0=
+\[\begin{tikzcd}
+	{T_N\times X_{\Sigma}} & {T_{N'}\times X_{\Sigma'}} \\
+	{X_\Sigma} & {X_{\Sigma'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+This is because it commutes at the level of
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJUX04iXSxbMSwxLCJUX3tOJ30iXSxbMSwwLCJUX3tOJ31cXHRpbWVzIFRfe04nfSJdLFswLDAsIlRfTlxcdGltZXMgVF97Tn0iXSxbMywyXSxbMywwXSxbMiwxXSxbMCwxXV0=
+\[\begin{tikzcd}
+	{T_N\times T_{N}} & {T_{N'}\times T_{N'}} \\
+	{T_N} & {T_{N'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+which are dense (and all schemes are separated here).
+\end{remark}
+
+
+\begin{example}
+Consider $\vp=id_{\Z^2}:\Z^2\to \Z^2$, $\Sigma$ the fan generated by $\sigma_1=\Cone((0,1),(1,1))$, $\sigma_2=\Cone((1,0),(1,1))$ and $\Sigma'$ the fan generated by $\Cone((0,1),(1,0))$.
+
+Recall that $X_\Sigma=\Bl_{(0,0)}\A^2$ and $X_{\Sigma'}=\A^2$. Note that $\vp$ is compatible with the fans and the induced toric morphism $\vp_\ast:\Bl_{(0,0)}\A^2\to \A^2$ is the blow-up map.
+\end{example}
+
+
+
+\begin{theorem}[]\label{ThPropernessConditionForToricMorphism}
+A toric morphism $\vp_\ast$ is proper if and only if $\vp_\R\ii(\abs{\Sigma'})=\abs{\Sigma}$.
+\end{theorem}
+\begin{proof}
+Note that the inclusion $\abs{\Sigma}\subseteq \vp_\R\ii(\abs{\Sigma'})$ is true by definition. 
+
+We use the valuative criterion for both arrows:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Assume $\vp_\ast$ is proper and by contradiction let $u\in N_\R$ be such that $\vp_\R(u)\in \abs{\Sigma'}$ but $u\notin \abs{\Sigma}$. Restating the first part of the assumption, there exists $\sigma'\in \Sigma'$ such that $\vp(u)\in \sigma'$. Recall that $\lim_{t\to 0}\la^u(t)$ exists in $U_\sigma$ if and only if $u\in \sigma$ (\ref{LmExistenceCriterionForLimitsInUsigma}), so by assumption $\la^{\vp(u)}:\G_m\to T_{N'}\subseteq U_{\sigma'}$ has a limit as $t\to 0$, but $\la^u:\G_m\to T_N\subseteq X_{\Sigma}$ does not have a limit. 
+
+% https://q.uiver.app/#q=WzAsNSxbMSwxLCJUX3tOJ30iXSxbMiwxLCJYX3tcXFNpZ21hJ30iXSxbMiwwLCJYX1xcU2lnbWEiXSxbMSwwLCJUX04iXSxbMCwwLCJcXEdfbSJdLFszLDJdLFszLDBdLFsyLDFdLFswLDFdLFs0LDNdXQ==
+\[\begin{tikzcd}
+	{\G_m} & {T_N} & {X_\Sigma} \\
+	& {T_{N'}} & {X_{\Sigma'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+Note that $\vp_\ast\circ \la^u=\la^{\vp(u)}$ so
+% https://q.uiver.app/#q=WzAsNixbMiwxLCJYX3tcXFNpZ21hJ30iXSxbMiwwLCJYX1xcU2lnbWEiXSxbMSwwLCJcXEdfbSJdLFsxLDEsIlxcQV4xIl0sWzAsMCwiXFxTcGVjIFxcSyJdLFswLDEsIlxcU3BlYyBSIl0sWzEsMF0sWzIsMV0sWzMsMCwiXFx3dHtcXGxhXntcXHZwKHUpfX0iLDJdLFsyLDNdLFs1LDNdLFs0LDJdLFs0LDVdLFszLDEsIlxcbm90XFxleGlzdHMiLDEseyJjb2xvdXIiOlsyMzYsMTAwLDQ4XX0sWzIzNiwxMDAsNDgsMV1dXQ==
+\[\begin{tikzcd}
+	{\Spec \K} & {\G_m} & {X_\Sigma} \\
+	{\Spec R} & {\A^1} & {X_{\Sigma'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{\not\exists}"{description}, color={rgb,255:red,0;green,16;blue,245}, from=2-2, to=1-3]
+	\arrow["{\wt{\la^{\vp(u)}}}"', from=2-2, to=2-3]
+\end{tikzcd}\]
+where $R=\Oc_{\A^1,0}$ and $\wt{\la^{\vp(u)}}$ is the extension of ${\la^{\vp(u)}}$. Since the blue arrow cannot exist, the lift from the DVR also can't (details to check), contraddicting properness.
+\item[$\boxed{\impliedby}$] Suppose we have $\vp_\R\ii(\abs{\Sigma'})=\abs{\Sigma}$. Let us consider a diagram
+% https://q.uiver.app/#q=WzAsNixbMSwxLCJYX3tcXFNpZ21hJ30iXSxbMSwwLCJYX1xcU2lnbWEiXSxbMCwwLCJcXFNwZWMgXFxLIl0sWzAsMSwiXFxTcGVjIFIiXSxbMiwwLCJUX04iXSxbMiwxLCJUX3tOJ30iXSxbMSwwLCJcXHZwX1xcYXN0Il0sWzIsM10sWzIsMV0sWzMsMF0sWzQsNSwiXFx2cF9cXGFzdCJdLFs1LDAsIlxcc3Vwc2V0ZXEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwxLCJcXHN1cHNldGVxIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	{\Spec \K} & {X_\Sigma} & {T_N} \\
+	{\Spec R} & {X_{\Sigma'}} & {T_{N'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\vp_\ast}", from=1-2, to=2-2]
+	\arrow["\supseteq"{description}, draw=none, from=1-3, to=1-2]
+	\arrow["{\vp_\ast}", from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\supseteq"{description}, draw=none, from=2-3, to=2-2]
+\end{tikzcd}\]
+we take the following (non trivial) fact as a given: since $X_\Sigma$ is irreducible, we allow ourselves to check the lifting property for diagrams where $\Spec\K$ maps into $T_N$.
+
+Now now that $\Spec R\to X_{\Sigma'}$ will factor through some $U_{\sigma'}$ for some $\sigma'\in \Sigma'$. We want to find $\sigma\in \Sigma$ and a lifting
+% https://q.uiver.app/#q=WzAsNSxbMSwxLCJVX3tcXHNpZ21hJ30iXSxbMSwwLCJUX04iXSxbMCwwLCJcXFNwZWMgXFxLIl0sWzAsMSwiXFxTcGVjIFIiXSxbMiwwLCJVX3tcXHNpZ21hfSJdLFsyLDNdLFsyLDFdLFszLDBdLFsxLDQsIlxcc3Vic2V0ZXEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwwLCJcXHZwX1xcYXN0Il0sWzMsNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{\Spec \K} & {T_N} & {U_{\sigma}} \\
+	{\Spec R} & {U_{\sigma'}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["\subseteq"{description}, draw=none, from=1-2, to=1-3]
+	\arrow["{\vp_\ast}", from=1-3, to=2-2]
+	\arrow[dashed, from=2-1, to=1-3]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+Passing to the algebras this means the following:
+% https://q.uiver.app/#q=WzAsNSxbMSwxLCJrW1Nfe1xcc2lnbWEnfV0iXSxbMSwwLCJrW01dIl0sWzAsMCwiXFxLIl0sWzAsMSwiUiJdLFsyLDAsImtbU197XFxzaWdtYX1dIl0sWzMsMiwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDJdLFswLDNdLFs0LDEsIlxcc3Vwc2V0ZXEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCw0XSxbNCwzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxXV0=
+\[\begin{tikzcd}
+	\K & {k[M]} & {k[S_{\sigma}]} \\
+	R & {k[S_{\sigma'}]}
+	\arrow[from=1-2, to=1-1]
+	\arrow["\supseteq"{description}, draw=none, from=1-3, to=1-2]
+	\arrow[dashed, from=1-3, to=2-1]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=2-1, to=1-1]
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=2-2, to=1-3]
+	\arrow[from=2-2, to=2-1]
+\end{tikzcd}\]
+the homomorphism $k[M]\to \K$ is encoded by a group homomorphism $\al:M\to(\K^\ast,\cdot)$. 
+
+If we compose $v\circ \al:M\to \K^\ast\to \Z$ we get an element of $(M^\vee)^\vee=N$ and a lift exists only when $v(\al(m))\geq 0$ for all $m\in S_\sigma$, that is, when $v\circ \al\in (\sigma^\vee)^\vee=\sigma$. So the existence of a lift reduces to showing that something belongs to $\sigma$.
+
+Now, $\al\circ \vp^\vee:M'\to \K^\ast$ corresponds to $\Spec \K\to T_N\to T_{N'}$ and we know that this lifts to $\Spec R$ so $v\circ \al\circ \vp^\vee$ is non-negative on $S_{\sigma'}$. So $\vp(v\circ \al)\in (\sigma'^\vee)^\vee=\sigma'$.
+
+Now, by assumption, there exists a cone $\sigma\in \Sigma$ such that $v\circ \al\in \sigma$ (and $\vp_\R(\sigma)\subseteq \sigma'$) so $v\circ \al\geq 0$ on $S_\sigma$ and thus we have a factorization of $k[S_\sigma]\to k[M]\xrightarrow{\al}\K$ through $R$.
+
+
+
+Uniqueness of the lift follows from separatedness.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+\begin{remark}
+If $N'=\cpa{0}$ then $X_{\Sigma'}=\Spec k$, so if $\Sigma$ is complete then $X_\Sigma$ is proper.
+\end{remark}
+
+
+
+\section{More on toric morphisms}
+There are two important types of toric morphisms: refinements and changes of lattice.
+
+\begin{definition}[]
+A fan $\Sigma'$ is a \textbf{refinement} (ir \textbf{subdivision}) of $\Sigma$ if for all $\sigma'\in \Sigma'$ there exists some $\sigma\in \Sigma$ with $\sigma'\subseteq \sigma$ (this says that $id_N:N\to N$ is compatible with the fans) and $\abs{\Sigma}=\abs{\Sigma'}$.
+\end{definition}
+
+
+\begin{theorem}[]\label{ThRefinementsGiveProperBirational}
+Refinements induce proper and birational toric morphisms.
+\end{theorem}
+
+\begin{remark}
+Refinements can be used to reduce singularities.
+\end{remark}
+
+\begin{fact}[]
+Blowups at torus-invariant closed subvarieties can also be described by refinements.
+\end{fact}
+
+
+\begin{definition}[]
+Let $\Sigma$ be a fan in $N_\R$ and consider a finite-index\footnote{$N/N'$ finite. For example $n_1\Z\times\cdots, n_n\Z\subseteq \Z^n$ with $n_i\neq 0$.} sublattice $N'\subseteq N$. Note that $N_\R=N'_\R$, so $\Sigma$ is also a fan in $N'_\R$. The inclusion $N'\inj N$ is compatible with $\Sigma$.
+\end{definition}
+
+\[0\to N'\to N\to Q\to 0\]
+with $Q$ torsion
+\[0\to \under{=0}{\Hom(Q,\Z)}\to \under{=M}{\Hom(N,\Z)}\to \under{=M'}{\Hom(N',\Z)}\to \Ext^1(Q,\Z)\to 0\]
+so we have $M\inj M'$, which yields $T_{N'}=D(M')\onto D(M)=T_N$.
+
+$G=\ker(T_{N'}\to T_N)\subseteq T_{N'}$ is a finite group ($\cha k=0$). Now $T_{N'}$ acts on $X_{\Sigma,N'}$ and therefore $G$ also acts on $X_{\Sigma,N'}$.
+
+\begin{fact}[]
+We have an isomorphism\footnote{there is a way to construct quotients of schemes for for actions of finite groups. In the affine case you take the spectrum of the subring of invariants of the ring of regular functions.} $X_{\Sigma,N'}/G\cong X_{\Sigma,N}$
+\end{fact}
 
 
 
 
 
 
+Recall that a toric morphism $\vp_\ast:X_{\Sigma}\to X_{\Sigma'}$ restricts to a homomorphism of algebraic groups $T_N\to T_{N'}$.
+
+\begin{theorem}[]\label{ThCharacterizationOfToricMorphisms}
+A morphism $f:X_{\Sigma}\to X_{\Sigma'}$ is toric if and only if when we restrict it to ${T_N}$ we get a homomorphism of algebraic groups $f\res{T_N}:T_N\to T_{N'}$.
+\end{theorem}
+\begin{proof}
+The homomorphism $f\res{T_N}:T_N\to T_{N'}$ gives a homomorphism $\vp:N\to N'$ by functoriality. This homomorphism yields $T_N\to T_{N'}$ back by the usual construction ($\vp$ gives $\vp^\vee:M'\to M$ which gives $k[M']\to k[M]$ and so $T_N\to T_{N'}$). To conclude we just need to check compatibility with the fans because then $\vp_\ast:X_\Sigma\to X_{\Sigma'}$ will be well defined and on the torus it gives $f\res{T_N}$ back, which by separatedness shows that $f=\vp_\ast$.
+
+Note that $f:X_\Sigma\to X_{\Sigma'}$ is $(T_N\to T_{N'})$-equivariant (commutes on tori and extend). The equivariance implies that the image of a $T_N$-orbit in $X_\Sigma$ is contained in a $T_{N'}$-orbit of $X_{\Sigma'}$.
+
+The idea is to use the orbit-cone correspondence to show compatibility.
+
+Pick $\sigma\in \Sigma$ and consider $\Oc(\sigma)\subseteq X_{\Sigma}$. We just noted that there must exist $\Oc(\sigma')\subseteq X_{\Sigma'}$ orbit such that $f(\Oc(\sigma))\subseteq \Oc(\sigma')$.
+
+Let us show that $f\res{U_\sigma}$ has image in $U_{\sigma'}$. Recall that
+\[U_\sigma=\coprod_{\tau\leq \sigma}\Oc(\tau)\]
+If $\tau\leq \sigma$ there will exist some $\tau'\in \Sigma'$ with $f(\Oc(\tau))\subseteq \Oc(\tau')$. The factorization we want happens if $\tau'$ is a face of $\sigma'$. Recall that $\ol{\Oc(\tau)}=V(\tau)=\coprod_{\tau\leq \wt\sigma}\Oc(\wt \sigma)\supseteq \Oc(\sigma)$.
+So 
+\[f(\Oc(\sigma))\subseteq f(\ol{\Oc(\tau)})\subseteq \ol{\Oc(\tau')}=V(\tau')\]
+Since $V(\tau')=\coprod_{\tau'\leq \wt\sigma'}\Oc(\wt\sigma')$ this shows that $\tau'\leq \sigma'$ because intersecting orbits must be the same.
+
+
+Having now reduced to the affine case $f\res{U_\sigma}:U_\sigma\to U_{\sigma'}$, now we can show that $\vp_\R(\sigma)\subseteq \sigma'$. It is enough to show that $\vp(\sigma\cap N)\subseteq \sigma'\cap N'$.
+
+Pick $u\in \sigma\cap N$, so that $\lim_{t\to 0}\la^u(t)$ exists in $U_\sigma$. Note that $f\circ \la^u=\la^{\vp(u)}$ and thanks to the equivariance, the image of the limit of $\la^u(t)$ via $f$ will be a limit for $\la^{\vp(u)}(t)$ in $U_{\sigma'}$. Therefore $\vp(u)\in \sigma'$.
+\end{proof}
 
 
 
+
+Another interesting kind of toric morphisms are ``locally trivial fibrations". 
+
+\begin{example}
+The fan for $\Pj^1\times\Pj^1$ is given by the four quadrants of $\R^2$.
+\end{example}
+
+\begin{example}
+See \cite{cox2011toric} for details. Consider the trapezoid $\Conv((0,0), (0,1), (a,0), (b, 1))$. Set $r=b-a$. The associated toric variety is the Hirzebruch surface. The normal fan of this shape is a kind of funky version of the fan for $\Pj^1\times \Pj^1$ above.
+
+You can take the projection $\Z^2\to \Z$ which is compatible with the fans of the Hirzebruch surface and of $\Pj^1$ respectively. It turns out that locally $H_r\to \Pj^1$ looks like $U\times \Pj^1$ but globally it is not a product.
+
+The fan of the fibers look like vertical sections.
+\end{example}
 
 
 
