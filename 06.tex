@@ -1,0 +1,288 @@
+\chapter{Cox rings}
+
+We seek to generalize the construction of $\Pj^n$ as
+\[\Pj^n=\quot{\A^{n+1}\nz}{\G_m}.\]
+This procedure yields \textit{homogeneous} coordinates on $\Pj^n$ which we can use to study its geometry (homogeneous ideals correspond to closed subvarieties etc).
+
+We will write
+\[X_\Sigma=(\A^r\bs Z)\sslash G\]
+where $r=\#\Sigma(1)$, $Z$ is some closed subset, $G$ is some algebraic group and the double slash indicates that we are taking the GIT quotient. In some cases this gives \textit{homogeneous coordinates} on the toric variety.
+
+The definition of the coordinate ring was later generalized to more general varieties\footnote{look up \textit{Cox ring} and \textit{Mori dream spaces}.}
+
+\section{Quick GIT primer}
+Given an action of an affine group $G$ on a variety $X$ one wants to construct a quotient ``$X/G$" as a scheme. We would also want this to be an orbit space. We also want a $G$-invariant morphism $X\to X/G$ which is universal with respect to $G$-invariant morphisms, that is
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvRyJdLFswLDFdLFswLDJdLFsyLDEsIlxcZXhpc3RzISIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{X/G}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\exists!}"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+If $X=\Spec A$ then $G\acts X$ induces a representation $G\acts A$ given by\footnote{at least on closed points of $G$} 
+\[g\cdot f(x)=f(g\ii\cdot x).\] 
+The best guess of $X/G$ in this case is $\Spec A^G$ with the map $X\to \Spec A^G$ induced by the inclusion $A^G\subseteq A$.
+This works for nice enough $G$ (called reductive).
+
+
+From now on assume $\cha k=0$ for simplicity.
+
+In the non-affine case the idea is to glue the local affine quotients given by the ring of invariants.
+
+\begin{definition}[]
+Assume that $G\acts X$ with $G$ affine algebraic group and $X$ variety. A morphism $\pi:X\to Y$ is called a \textbf{good quotient} if the following conditions hold
+\begin{enumerate}
+\item for all $U\subseteq Y$ open, the homomorphism $\Oc_Y(U)\to \Oc_X(\pi\ii(U))$ induces an isomorphism
+\[\Oc_Y(U)\to \Oc_X(\pi\ii(U))^G.\]
+\item If $W\subseteq X$ is $G$-invariant and closed then $\pi(W)\subseteq Y$ is closed
+\item If $W_1,W_2\subseteq X$ are $G$-invariant closed and disjoint then $\pi(W_1)$ and $\pi(W_2)$ are also disjoint.
+\end{enumerate}
+If $X\to Y$ is such a good quotient we write $Y=X\sslash G$.
+\end{definition}
+
+
+
+\begin{fact}[]
+If $G\acts X$ admits a good quotient $X\sslash G$ then
+\begin{enumerate}
+\item $X\to X\sslash G$ is a categorical quotient (and so the quotient is unique up to unique isomorphism)
+\item $\pi:X\to X\sslash G$ is surjective
+\item $A\subseteq X\sslash G$ is open if and only if $\pi\ii(A)\subseteq X$ is open (it has the quotient topology)
+\item If $U\subseteq X\sslash G$ is open then $\pi\res{\pi\ii(U)}:\pi\ii(U)\to U$ is also a good quotient. Moreover, if $\pi:X\to Y$ is a $G$-invariant morphism and $\cpa{U_i}$ is an open cover of $Y$ such that $\pi\res{\pi\ii(U_i)}:\pi\ii(U_i)\to U_i$ are good quotients then $\pi$ is also a good quotient.
+\item If $x,y\in X$ then $\pi(x)=\pi(y)$ if and only if $\ol{G x}\cap \ol{G y}\neq \emptyset$.
+\item Every fiber of $\pi:X\to X\sslash G$ contains exactly one closed orbit, so
+\[\cpa{\text{points of }X\sslash G}\leftrightarrow\cpa{\text{closed orbits of }X}\]
+\end{enumerate}
+\end{fact}
+
+
+\begin{definition}[]
+A good quotient is called \textbf{geometric} if the orbits of the action are closed, so that $X\sslash G$ is really an orbit space. In this case we usually write $X/G$.
+\end{definition}
+
+
+\begin{fact}[]
+If $G$ is reductive\footnote{whatever that means, if $G$ is diagonalizable it works} and $X=\Spec A$ then $\Spec A\to \Spec A^G$ is a good quotient. 
+\end{fact}
+
+\begin{definition}[]
+If there exists $U\subseteq X\sslash G$ dense open such that $\pi\res{\pi\ii(U)}:\pi\ii(U)\to U$ is geometric then $\pi$ is called an \textbf{almost geometric quotient}.
+\end{definition}
+
+\begin{example}
+$\G_m\acts \A^{n+1}$ by scaling has a good quotient $\A^{n+1}\to \Spec k$, which is not almost geometric.
+\end{example}
+
+\begin{example}
+$\G_m\acts(\A^{n+1}\nz)$ by scaling has $\Pj^n$ as a geometric quotient.
+\end{example}
+
+
+\begin{example}
+Consider $\G_m\acts \A^4$ given by $t\cdot(x,y,z,w)=(tx,ty,t\ii z,t\ii w)$. The coordinate ring of $\A^4$ is $R=k[x,y,z,w]$ and it turns out that
+\[R^G=k[xz,xw,yz,yw]=\frac{k[X,Y,Z,W]}{(XW-YZ)}\]
+We have $\A^4\to \Spec R^G\subseteq \A^4$ and it turns out that $\pi\ii(p)$ is a single orbit for $p\neq (0,0,0,0)$ but $\pi\ii((0,0,0,0))$ contains more than one orbit (the only closed one is $\cpa{(0,0,0,0)}$).
+
+We see that $\A^4\to \Spec R^G$ is a good and almost geometric quotient.
+\end{example}
+
+
+\section{Toric variety as a good quotient}
+\subsection{The group}
+The group $G$ that we will consider will be the Cartier dual of $\Cl(X_\Sigma)$, which is finitely generated because $\Div_{T_N}(X_\Sigma)$ is.
+
+At the level of closed points we have
+\[G=\Hom_{\Grp}(\Cl(X_\Sigma),k^\ast)=\Hom_\Z(\Cl(X_{\Sigma}),k^\ast).\]
+If $\Cl(X_\Sigma)\cong \Z^n\oplus \bigoplus \znz{n_i}$ then $G(k)\cong (k^\ast)^n\oplus\bigoplus \mu_{n_i}(k)$.
+
+Let's assume that $X_\Sigma$ has no torus factors\footnote{recall that that means that $\cpa{u_\rho\mid \rho\in \Sigma(1)}$ span $N_\R$}. The general case is similar.
+
+With this assumption we have
+\[0\to M\to \under{\Z^{\Sigma(1)}:=}{\bigoplus_{\rho\in \Sigma(1)}\Z\cdot D_\rho}\to \Cl(X_\Sigma)\to 0\]
+By applying $\Hom_\Z(\cdot, k^\ast)$ we get\footnote{we don't get $\Ext$ groups showing up because $k^\ast$ is divisible.}
+\[1\to \Hom(\Cl(X_\Sigma),k^\ast)\to \Hom(\Z^{\Sigma(1)},k^\ast)\to \Hom(M,k^\ast)\to 1\]
+that is,
+\[1\to \Hom(\Cl(X_\Sigma),k^\ast)\to \G_m^{\Sigma(1)}(k)\to T_N(k)\to 1\]
+\begin{proposition}[]\label{PrComputeClosedPointsOfCartierDualOfClassGroup}
+If $e_1,\cdots, e_n$ is a basis of $M$ then
+\begin{align*}
+G(k)=&\cpa{(t_\rho)\in \G_m^{\Sigma(1)}(k)\mid \forall m\in M,\ \prod_{\rho}t_\rho^{\ps{m,u_\rho}}=1}=\\
+=&\cpa{(t_\rho)\in \G_m^{\Sigma(1)}(k)\mid \prod_{\rho}t_\rho^{\ps{e_i,u_\rho}}=1\text{ for }1\leq i\leq n}
+\end{align*}
+\end{proposition}
+\begin{proof}
+Just remember that $M\to \Z^{\Sigma(1)}$ is given by $m\mapsto (\ps{m,u_\rho})_{\rho\in \Sigma(1)}$ and use the short exact sequence.
+\end{proof}
+
+
+\begin{example}
+Recall that we can obtain $\Pj^n$ from the fan in $\R^n$ with ray generators $u_i=e_i$, $u_0=-e_1\cdots-e_n$. So $\G_m^{\Sigma(1)}=\G_m^{n+1}$ and $(t_0,\cdots, t_n)\in \G_m^{n+1}$ is in the group $G$ if and only if
+\[1=t_0^{\ps{m,-e_1\cdots-e_n}}t_1^{\ps{m,e_1}}\cdots t_n^{\ps{m,e_n}}\]
+for all $m\in M$. Taking $m=e_i$ we get $t_0\ii t_i=1$, that is, $t_0=t_i$. Since this holds for all $i$ we have
+\[G=\cpa{(t,\cdots, t)\mid t\in \G_m}\subseteq \G_m^{n+1}\]
+which is exactly how $\G_m$ acts on $\A^{n+1}\nz$ to get $\Pj^n$. 
+\end{example}
+
+\begin{example}
+For $\sigma=\Cone((d,-1),(0,1))$, $\Cl(U_\sigma)\cong \znz d$ so $G=\mu_d$, which is described as a subgroup of $\G_m^2$ by $s^{\ps{m,(d,-1)}}t^{\ps{m,(0,1)}}=1$, which yields $s^d1=1$, $s\ii t=1$, so $G=\cpa{(t,t)\mid t^d=1}$.
+\end{example}
+
+\subsection{The closed subset to remove}
+We now have to describe the closed subset $Z$ to remove from $\A^{\Sigma(1)}$.
+
+Note that $\G_m^{\Sigma(1)}\acts\A^{\Sigma(1)}$, so $G\subseteq\G_m^{\Sigma(1)}$ also does. Let us write
+\[S=k[x_\rho\mid \rho\in \Sigma(1)]\]
+for the coordinate ring of $\A^{\Sigma(1)}$. This is called the \textbf{total coordinate ring} of $X_\Sigma$.
+
+
+For $\sigma\in \Sigma$ we define
+\[x^{\wh \sigma}=\prod_{\rho\notin \sigma(1)}x_\rho\in S\]
+and consider the ideal $B(\Sigma)=(x^{\wh \sigma}\mid \sigma\in \Sigma)S$. This is called the \textbf{irrelevant ideal}.
+
+\begin{remark}
+If $\tau\leq \sigma$ then $x^{\wh \sigma}\mid x^{\wh \tau}$, so $B(\Sigma)=(x^{\wh \sigma}\mid \sigma\in \Sigma\text{ maximal cone})S$.
+\end{remark}
+
+
+Define $Z(\Sigma)=V(B(\Sigma))\subseteq \A^{\Sigma(1)}$.
+
+\begin{remark}
+$Z(\Sigma)$ is a union of coordinate vector subspaces. These can be described explicitly.
+\end{remark}
+
+\begin{definition}[]
+A subset $C\subseteq \Sigma(1)$ is a \textbf{primitive collection} if
+\begin{itemize}
+\item $\not\exists\sigma\in \Sigma$ such that $C\subseteq \sigma(1)$
+\item for all $C'\subsetneq C$ there exists some $\sigma\in \Sigma$ such that $C'\subseteq \sigma(1)$.
+\end{itemize}
+\end{definition}
+
+
+
+\begin{proposition}[]
+$Z(\Sigma)=\bigcup_{C\text{ primitive collection}}V(x_\rho\mid \rho\in C)$.
+\end{proposition}
+\begin{proof}
+We observed that $Z(\Sigma)$ is a union of coordinate subspaces so it suffices to describe the maximal ones. If $V(x_{\rho_1},\cdots, x_{\rho_s})$ is one such maximal subspace then we claim that $C=\cpa{\rho_1,\cdots, \rho_s}$ is a primitive collection: if $\sigma\in \Sigma$ then $x^{\wh \sigma}$ vanishes on $Z(\Sigma)$ and so $x^{\wh \sigma}\in B(\Sigma)$. Since $(x_{\rho_1},\cdots, x_{\rho_s})$ is prime, there exists some $i$ such that $x_{\rho_i}\mid x^{\wh \sigma}$, i.e., $C\subsetneq \sigma(1)$.
+
+The minimality of $C$ is given by the maximality of the subspace.
+
+
+Viceversa, if $C$ is a primitive collection then $V(x_\rho\mid \rho\in C)$ is a maximal coordinate hyperplane in $Z(\Sigma)$ by a similar argument.
+\end{proof}
+
+
+\begin{example}
+For $\Pj^n$ the maximal cones are $\sigma_i=\Cone(u_0,\cdots, \wh{u_i},\cdots, u_n)$. So $x^{\wh{\sigma_i}}=x_i$ and $B(\Sigma)=(x_0,\cdots, x_n)$ as was to be expected. Indeed the only primitive collection is $\cpa{\rho_0,\cdots, \rho_n}$.
+\end{example}
+
+\begin{example}
+Let us consider $\Pj^1\times\Pj^1$ with ray generators for $\Sigma$ given by $u_1=e_1$, $u_2=-u_1$, $u_3=e_2$ and $u_4=-u_3$.
+
+We have $S=k[x_1,x_2,x_3,x_4]$, 
+\[B(\Sigma)=(x_2x_4,x_2x_3,x_1x_4,x_1x_3),\] 
+so $Z(\Sigma)=\cpa{(0,0)}\times \A^2\cup \A^2\times\cpa{(0,0)}\subseteq \A^4$ as we would expect, and in fact the primitive collections are $\cpa{\rho_1,\rho_2}$ and $\cpa{\rho_3,\rho_4}$.
+\end{example}
+
+
+\subsection{Bringing it together}
+Now note that $\G_m^{\Sigma(1)}$ acts on $\A^{\Sigma(1)}$ via diagonal matricies, which preserve coordinate subspaces, so the action restricts to an action on $\A^{\Sigma(1)}\bs Z(\Sigma)$. This restricts to an action of $G$.
+
+
+We'll construct the quotient map $\A^{\Sigma(1)\bs{Z(\Sigma)}}\to X_{\Sigma}$ as a toric morphism. In particular, $\A^{\Sigma(1)\bs{Z(\Sigma)}}$ is a toric variety. Its fan $\wt\Sigma$ is given as follows: let $e_\rho$ be the standard basis bectors of $\Z^{\Sigma(1)}$. For each $\sigma\in \Sigma$ consider $\wt \sigma\subseteq \R^{\Sigma(1)}$ given by
+\[\wt \sigma=\Cone(e_\rho\mid \rho\in \sigma(1))\]
+We now set $\wt \Sigma=\cpa{\tau\mid \tau\leq \wt \sigma,\ \sigma\in \Sigma}$. Note that we need to consider the faces because not every such $\tau$ comes from a face of $\sigma\in \Sigma$ (the new faces look like ``diagonals" in the original cone).
+
+\begin{proposition}[]\label{PrMakingTheTotalSpace}
+The following hold
+\begin{enumerate}
+\item $\A^{\Sigma(1)}\bs Z(\Sigma)\cong X_{\wt \Sigma}$
+\item The morphism $\Z^{\Sigma(1)}\to N$ given by $e_\rho\mapsto u_\rho$ is compatible with the fans
+\item The induced toric morphism $\A^{\Sigma(1)}\bs Z(\Sigma)\to X_{\Sigma}$ is $G$-invariant.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We prove the propositions
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item The fan of $\A^{\Sigma(1)}$ is given by the come $\Cone(e_\rho\mid \rho\in \Sigma(1))$ and all of its faces. Note that $\wt \Sigma$ is a subfan of this one. The complement of this subfan is given by the cones $\Cone(e_\rho\mid \rho\in C)$ which are not faces of any $\wt \sigma=\Cone(e_\rho\mid \rho\in \sigma(1))$, i.e., $\not\exists \sigma\in \Sigma$ such that $C\subseteq \sigma(1)$. The minimal such cones are exactly the ones where $C$ is a primitive collection and this determines which cones we remove to get $\wt \Sigma$. Removing these cones from the fan corresponds to removing the corresponding torus orbits from $\A^{\Sigma(1)}$, that is, removing $V(x_\rho\mid \rho\in C)=Z(\Sigma)$ by what we have shown.
+\item Obvious by construction: if $\tau\leq\wt\sigma$ then it mapst into $\sigma$.
+\item The morphism on the tori $\G_m^{\Sigma(1)}\to T_N$ is the map induced by $\Z^{\Sigma(1)}\to N$, or dually, $M\to \Z^{\Sigma(1)}$, so $G=\ker(\G_m^{\Sigma(1)}\to T_N)$ and since $\A^{\Sigma(1)}\bs Z(\Sigma)\to X_{\Sigma}$ is $(\G_m^{\Sigma(1)}\to T_N)$-equivariant, it follows that it is $G$-invariant.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+\begin{theorem}[]\label{ThToricVarietiesAsAlmostGeometricQuotients}
+The map $\pi:\A^{\Sigma(1)}\bs Z(\Sigma)\to X_{\Sigma}$ is an almost geometric quotient by $G$ and it is geometric if and only if $X_\Sigma$ is simplicial.
+\end{theorem}
+\begin{proof}
+We carefully prove that the map is a good quotient, the rest will be sketched
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{good}$] It is enough to show that for every $\sigma\in \Sigma$, $\pi_\sigma:=\pi\res{\pi\ii(U_\sigma)}:\pi\ii(U_\sigma)\to U_\sigma$ is a good quotient. Call $\vp:\Z^{\Sigma(1)}\to N$. Since $\vp(\wt \tau)\subseteq \sigma\coimplies \tau\leq \sigma$ for $\tau,\sigma\in \Sigma$, it follows that $\pi\ii(U_\sigma)=U_{\wt \sigma}$ (use orbit-cone correspondence).
+
+We have to show that $\pi_\sigma:U_{\wt \sigma}\to U_\sigma$ is a good quotient. We will check that $\pi_\sigma^\ast:k[U_\sigma]\to U_{\wt \sigma}$ induces an isomorphism $k[U_\sigma]\cong k[U_{\wt \sigma}]^G$. Recall that
+\[k[U_\sigma]=k[\sigma^\vee\cap M],\quad k[U_{\wt \sigma}]=k[\wt \sigma^\vee\cap \Z^{\Sigma(1)}]\]
+Note that
+\[\wt \sigma^\vee\cap \Z^{\Sigma(1)}=\cpa{(a_\rho)\in \Z^{\Sigma(1)}\mid a_\rho\geq 0\ \forall \rho\in \sigma(1)},\]
+so
+\[k[U_{\wt \sigma}]=k[\prod x_\rho^{a_\rho}\mid a_\rho\geq 0\ \forall \rho\in \sigma(1)]=S_{x_{\wh\sigma}}\]
+where $S=k[x_\rho\mid \rho\in \Sigma(1)]$.
+
+The morphism $\vp$ dualizes to $\vp^\vee(m)=(\ps{m,u_\rho})$, so
+\[\pi_\sigma^\ast\funcDef{k[U_\sigma]}{k[U_{\wt \sigma}]=S_{x_{\wh\sigma}}}{t^m}{\prod x_\rho^{\ps{m,u_\rho}}}\]
+We already know that $\pi_\sigma^\ast$ factors thorugh $S_{x_{\wh \sigma}}^G$ because we showed that $\pi$ is $G$-invariant. We also know that the morphism is injective because at the level of varieties it is dominant (surjective on the tori). 
+
+Let us check surjectivity. If $f\in S_{x_{\wh \sigma}}$ then
+\[f=\sum c_a x^a,\quad a=(a_\rho)\in \Z^{\Sigma(1)}\]
+where $a_\rho\geq 0$ for $\rho\in \sigma(1)$. Such an element is $G$-invariant if and only if for every $t=(t_\rho)\in G\subseteq \G_m^{\Sigma(1)}$ we have
+\[\sum c_a x^a=\sum c_a t^{-a}x^a\]
+so $t^{-a}=1$ for all $t\in G$ and $a$ such that $c_a\neq 0$, i.e. the character $t\mapsto t^a$, an element of $X(G)=\Cl(X_\Sigma)$ is trivial. Using the exact sequence
+\[0\to M\to \Z^{\Sigma(1)}\to \Cl(X_\Sigma)\to0\]
+it follows that there is some $m\in M$ such that $a_\rho=\ps{m,u_\rho}$ for all $\rho\in \Sigma(1)$. Since $a_\rho=\ps{m,u_\rho}\geq 0$ for all $\rho\in \sigma(1)$ we have that a $G$-invariant $f$ must be of the form $\sum c_a x^{\vp^\vee(m)}$, that is, it comes from $k[U_\sigma]$.
+\item[$\boxed{geometric\equiv simple}$] We want to show that $\pi_\sigma:U_{\wt \sigma}\to U_\sigma$ is geometric if and only if $\sigma$ is simplicial. We use the following fact: 
+\begin{center}
+	If $X$ is an affine (possibly non-normal) $T$-toric variety then for all $x\in X$ there exists a 1-parameter subgroup $\la:\G_m\to T$ and $y\in T\subseteq X$ such that $x=\lim_{t\to 0}\la(t)\cdot y$.
+\end{center}
+If $\sigma$ is simplicial we need to show that all $G$-orbits are closed. Without loss of generality we may suppose that $G$ is connected (and so it is a torus by classification of diagonalizable groups). Take $p\in U_{\wt \sigma}$ and $x\in \ol{G\cdot p}$. We want to show that $x\in G\cdot p$. Note that $\ol{G\cdot p}$ is a toric variety with torus $T=G/\stab_G(p)$, so by the claimed fact there exists some $\la$ 1ps and $y\in T$ such that $x=\lim (\la(t)\cdot y)\cdot p$. It turns out that $\la$ has to be trivial by simpliciality of $\sigma$ so $\la(t)y=y$, which implies $x=y\cdot p\in G\cdot p$.
+
+Viceversa, if $\sigma$ is not simplicial then from a non-trivial linear relation between the ray generators one can construct a 1-ps $\la$ and a point $p\in U_{\wt\sigma}$ such that $\ol p=\lim \la(t)\cdot p$ exists in $U_{\wt \sigma}$ but $\ol p\notin G\cdot p$, showing that the orbit is not closed.
+\item[$\boxed{almost\ geom.}$] It is enough to note that is $\Sigma'\subseteq \Sigma$ is the subfan of simplicial cones in $\Sigma$ then $X_{\Sigma'}\subseteq X_\Sigma$ is a dense open over which $\pi$ is geometric.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+\begin{remark}
+Note that all rays of $\Sigma$ are simplicial, so $X_\Sigma\bs X_{\Sigma'}$ has codimention at least 2.
+\end{remark}
+
+
+\section{Analogies with projective space}
+
+The total coordinate ring $S=k[x_\rho\mid \rho\in\Sigma(1)]$ is graded by $\Cl(X_\Sigma)$: we say that $x^a=\prod_\rho x_\rho^{a_\rho}$ has degree $[\sum a_\rho D_\rho]\in \Cl(X_\Sigma)$.
+
+Let $S_\beta$ denote the graded summand of $S$ corresponding to $\beta\in \Cl(X_\Sigma)$. Recall that $G=\Hom(\Cl(X_\Sigma),k^\ast)$ acts on $\A^{\Sigma(1)}$ via $\G_m^{\Sigma(1)}$, so it acts on $S$ and the action is given by
+\[(g\cdot f)(x)=f(g\ii\cdot x)\]
+In particular, $g\cdot \chi^m(x)=\chi^m(g\ii)\chi^m(x)$ for $m\in \Z^{\Sigma(1)}$. If $m\mapsto \beta$ in $\Cl(X_\Sigma)$ we may write $g\chi^m(x)=\chi^\beta(g\ii)\chi^m(x)$.
+
+From this one can check that $f\in S_\beta$ if and only if $g\cdot f=\chi^\beta(g\ii) f$, that is, $S_\beta$ is generated by $t^m$ for $m$ mapping to $\beta$ under $\Z^{\Sigma(1)}\to \Cl(X_\Sigma)$. This is in turn equivalent to
+\[f(g\ii x)=\chi^\beta(g\ii)f(x)\]
+equivalently
+\[f(gx)=\chi^\beta(g)f(x)\]
+i.e. ``\textit{$f$ is homogeneous of degree $\beta$}".
+
+
+
+
+
+
+
+
+
+
+
+

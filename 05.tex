@@ -216,7 +216,7 @@ One can also show that $X_\Sigma$ is simplicial (every cone in $\Sigma$ is simpl
 
 Recall that if $D\in \Div(X)$ is Cartier then there exists an open cover $\cpa{U_i}$ of $X$ and $f_i\in k(X)$ for all $i$ such that $D\res{U_i}=\div(f_i)\res{U_i}$. We may call $\cpa{(U_i,f_i)}$ a \textit{Cartier data} for $D$.
 
-\begin{proposition}[]\label{}
+\begin{proposition}[]\label{PrInvariantCartierDivisorsCorrespondToCartierData}
 Let $D\in \Div_{T_N}(X_\Sigma)$ and let us write $D=\sum a_\rho D_\rho$. The following are equivalent
 \begin{enumerate}
 \item $D$ is Cartier
@@ -252,11 +252,134 @@ This choice boils down to the fact that the $\Oc_X$-module associated to a divis
 Note that if $\tau\leq \sigma$ then we have $\sigma^\perp\cap M\subseteq \tau^\perp\cap M$ and this induces a map $M/M(\sigma)\to M/M(\tau)$. This maps $[m_\sigma]$ to $[m_\tau]$.
 
 The groups $\cpa{M/M(\sigma)}_{\sigma\in \Sigma}$ form an inverse system ordered by $\Sigma$ and the face-relation. It turns out that
-\[\CDiv_{T_N}(X_\Sigma)\cong \varprojlim_{\sigma\in \Sigma}M/M(\sigma)\]
+\[\CDiv_{T_N}(X_\Sigma)\cong \varprojlim_{\sigma\in \Sigma}M/M(\sigma).\]
 This just means that Cartier divisors correspond exactly to compatible collections of $\cpa{[m_\sigma]}_{\sigma\in \Sigma}$.
 
 
+\subsubsection{Support functions}
+These $(m_\sigma)_{\sigma\in\Sigma}$ can be though of as piecewise linear functions on $\abs\Sigma$
 
+\begin{definition}[]
+A \textbf{support function} on a fan $\Sigma$ is $N_\R$ is a function $\vp:\abs{\Sigma}\to \R$ which is linear on every cone $\sigma$. Such a function is \textbf{integral} if $\vp(\abs\Sigma\cap N)\subseteq \Z$.
+
+
+We use $SF(\Sigma,N)$ to denote the group (sum induced via the codomain) of integral support functions on $\Sigma$.
+\end{definition}
+
+\begin{theorem}[]\label{ThIntegralSupportFunctionCorrespondToInvariantCartierDivisors}
+Given $D=\sum a_\rho D_\rho\in \CDiv_{T_N}(X_\Sigma)$ with Cartier data $(m_\sigma)_{\sigma\in \Sigma}$, we get a function
+\[\vp_D:\funcDef{\abs\Sigma}{\R}{u}{\ps{m_\sigma,u}\text{ if }u\in \sigma}\]
+This is a well defined integral support function on $\Sigma$.
+
+Moreover $D=-\sum \vp_D(u_\rho)D_\rho$ and the map $D\mapsto \vp_D$ given an isomorphism between $\CDiv_{T_N}(X_\Sigma)\cong SF(\Sigma,N)$.
+\end{theorem}
+\begin{proof}
+The fact that $\vp_D$ is well defined follows from the fact that if $u\in \sigma\cap \sigma'$ then $m_\sigma\equiv m_{\sigma'}\pmod{M(\sigma\cap \sigma')}$ and so $m_\sigma-m_{\sigma'}\in (\sigma\cap \sigma')^\perp\subseteq u^\perp$.
+
+It is integral because $\ps{\cdot,\cdot}$ is a pairing between $N$ and $M$.
+
+The identity $\vp_D(u_\rho)=-\ps{m_\sigma,u_\rho}$ is already known for Cartier data (\ref{PrInvariantCartierDivisorsCorrespondToCartierData}).
+
+It is clear that $D\mapsto \vp_D$ is a homomorphism. It is injective thanks to the fact we just mentioned. Consider now $\vp\in SF(\Sigma,N)$. For a fixed $\sigma\in \Sigma$ note that $\vp\res{\sigma\cap N}:\sigma\cap N\to \Z$ is a monoid homomorphism by linearity of $\vp\res\sigma$, this induces a homomorphism $N_\sigma:=\Span(\sigma)\cap N\to \Z$, which gives an element of $(N_\sigma)^\vee\cong M/M(\sigma)$. These $m_\sigma$ yield Cartier data of a divisor and by construction $\vp_D=\vp$.
+\end{proof}
+
+
+We may therefore rewrite the localization sequence (\ref{PrExactSequenceOfTorusInvariantCartierDivisors}) as
+\[M\to SF(\Sigma,N)\to \Pic(X_\Sigma)\to 0\]
+where the first map is $m\mapsto (u\mapsto -\ps{m,u})$. The image of $M$ in $SF(\Sigma,N)$ are exactly the linear functions (seen as a subgroup of the piecewise linear ones).
+
+\section{Proper but not projective variety}
+
+These piecewise linear functions are useful to state some geometric properties, for example:
+
+\begin{fact}[]
+A divisor $D$ is ample if and only if $\vp_D$ is strictly convex, that is, it is convex and it is linear only on the cones of $\Sigma$, not bigger subsets.
+\end{fact}
+
+We will produce a toric 3-fold whose fan is complete (and thus is proper) but such that all support functions are linear, meaning that $\Pic(X_\Sigma)=0$ and so we have no hope of finding an ample line bundle to embed $X_\Sigma$ in projective space.
+
+
+
+Consider the cube $[-1,1]^3\subseteq \R^3$ and take the fan over its faces. Now take one vertex (say $(1,1,1)$) and we drag it up, making it $(1,2,3)$.
+
+This is a complete fan by construction, so $X_\Sigma$ is proper by (\ref{ThPropernessConditionForToricMorphism}).
+
+Consider now $\vp\in SF(\Sigma,\Z^3)$. The minimal ray generators are
+\[u_1=(1,2,3),\ u_2=(1,-1,1),\ u_3=(1,1,-1),u_4=(-1,1,1)\]
+\[u_5=(1,-1,-1),\ u_6=(-1,-1,1),\ u_7(-1,1,-1),\ u_8=(-1,-1,-1)\]
+Let $\sigma_1=\Cone(u_1,u_2,u_3,u_5)$. By definition $\vp_{\sigma_1}$ is linear, say given by $m_1\in \Z^3$. We can replace $\vp$ by $\vp-\ps{m_1,\cdot}$. We claim that now $\vp=0$ (so the original $\vp$ was the linear function $\ps{m,\cdot}$). On $\sigma_1$ we have $\vp=0$ by construction, so in particular
+\[\vp(u_1)=\vp(u_2)=\vp(u_3)=\vp(u_5)=0\]
+we have to show that $\vp$ is zero on the other minimal ray generators. Every cone of $\sigma$ gives a linear relation between the four corresponding ray generators:
+\begin{gather*}
+2u_1+5u_5=4u_2+3u_3\\
+2u_1+4u_7=3u_3+5u_4\\
+2u_1+3u_6=4u_2+5u_4\\
+u_2+u_8=u_5+u_6\\
+u_3+u_8=u_5+u_7\\
+u_4+u_8=u_6+u_7
+\end{gather*} 
+Applying $\vp$ we get some equations between the values of $\vp$ at the ray generators, which will give the desired result after some computation.
+
+
+\begin{remark}
+This example is clearly singular (it's not simplicial since the cones all have four generators). One can also produce a smooth example by producing a smooth fan with no strictly convex support function.
+\end{remark}
+
+The reason why we considered 3-folds is because
+
+\begin{fact}[]
+Every proper toric surface is projective.
+\end{fact}
+
+\begin{fact}[]
+Smooth proper surfaces over an algebraically closed field are always projective, but there are singular proper non-projective surfaces.
+\end{fact}
+
+
+\section{Projective case}
+Recall that if we have a full dimensional lattice polytope in $M_\R$
+\[P=\cpa{m\in M_\R\mid \ps{m,u_F}\geq -a_F\text{ for $F$ facet}}\]
+The toric variety only depends on the normal fan $\Sigma_P$, the polytope itself actually encodes a divisor on $X_P$, specifically the divisor
+\[D_P=\sum a_F D_{F}\]
+where $D_F=D_{\Cone(u_F)}$ (recall that rays of $\Sigma_P$ correspond to facets of $P$).
+
+\begin{proposition}[]\label{PrPolytopeGivesCartierDivisor}
+$D_P$ is Cartier.
+\end{proposition}
+\begin{proof}
+We produce Cartier data, that is, for every maximal cone $\sigma\in \Sigma_P$ we want $m_\sigma\in M$ such that $\ps{m_\sigma,u_F}=-a_F$ for every facet $F$ such that $\rho_F\in \sigma(1)$. Recall that maximal cones in $\Sigma_P$ correspond to vertices $v\in P$, so $\rho_F\in \sigma_v(1)$ if and only if $v\in F$.
+
+If $v\in F$ then $\ps{v,u_F}=-a_F$ by definition. $m_{\sigma_v}=v$ works.
+\end{proof}
+
+In terms of support functions
+\begin{proposition}[]
+If $P$ is a full dimensional lattice polytope then\footnote{that minimum exists because $P$ is compact and $\ps{\cdot,u}$ is continuous}
+\[\vp_P:\funcDef{N_\R=\abs{\Sigma_P}}{\R}{u}{\min(\ps{m,u}\mid m\in P)}\]
+is an integral support function on $\Sigma_P$. The corresponding divisor is $D_P$.
+\end{proposition}
+\begin{proof}
+Recall that $\vp_{D_P}(u_F)=-a_F$. We have to check that $\vp\in SF(\Sigma_P,N)$ and that $\vp_P(u_F)=-a_F$.
+
+If $v\in P$ is a vertex then $\sigma_v=\Cone(u_F\mid v\in F)$. If $u\in \sum_{v\in F}\la_F u_F\in \sigma_v$ then
+\[\ps{m,u}=\sum_{v\in F}\la_F\ps{m,u_F}\geq -\sum_{v\in F}\la_F a_F\]
+so $\vp(u)\geq -\sum_{v\in F}\la_F a_F$ and equality holds for $m=v$ because $v\in F$ and so $\ps{v,u_F}=-a_F$, so that value is the minimum, showing that $\vp(u)=-\sum \la_F a_F=\ps{v,u}$. This shows that $\vp\res{\sigma_v}$ is linear and that $\vp(u_F)=-a_F$.
+\end{proof}
+
+
+We can actually go the other way around now: for all $D\in \Div_{T_N(X_\Sigma)}$ we can define a polyhedron $P_D\subseteq M_\R$ (which might be unbounded and/or have non-integral vertices). This construction satisfies $P_{D_P}=P$ and gives a bijection
+\[\cpa{\text{full dimensional lattice polytopes}}\leftrightarrow\cpa{(X_\Sigma,D)\mid \emat{\text{$X_\Sigma$ projective,}\\\text{$D$ ample and torus invariant}}}\]
+
+Starting from $D=\sum a_\rho D_\rho$ we define
+\[P_D=\cpa{m\in M_\R\mid \ps{m,u_\rho}\geq -a_\rho\ \forall \rho\in\Sigma(1)}.\]
+This is the intersection of finitely many half-spaces a.k.a. a polyhedron.
+
+
+The divisor $D$ corresponds to a sheaf $\Oc_X(D)$ and
+\[\Oc_{X_\Sigma}(D)(X_\Sigma)=\cpa{f\in k{X_\Sigma}^\ast\mid \div f+D\geq 0}\cup\cpa 0=\bigoplus_{\div(t^m)+D\geq 0} k\cdot t^m\]
+and $\div(t^m)=\sum \ps{m,u_\rho}D_\rho$, so $\div(t^m)+D\geq 0$ means that $\ps{m,u_\rho}+a_\rho\geq 0$. This shows that
+\[\Oc_{X_\Sigma}(D)(X_\Sigma)=\bigoplus_{m\in P_D\cap M}k\cdot t^m\]
+and indeed these are the characters that we used when defining $X_P$ for $P$ very ample. This corresponds to the general construction of projective embeddings coming from very ample line bundles.
 
 
 
